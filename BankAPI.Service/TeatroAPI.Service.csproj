@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankAPI.Data\BankAPI.Data.csproj" />
-    <ProjectReference Include="..\BankAPI.Model\BankAPI.Model.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Data\TeatroAPI.Data.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Model\TeatroAPI.Model.csproj" />
   </ItemGroup>
 
 </Project>

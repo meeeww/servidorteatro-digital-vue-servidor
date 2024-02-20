@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAPI", "BankAPI\BankAPI.csproj", "{DDDF16C6-8347-41A5-9E93-EC599662B311}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeatroAPI", "TeatroAPI\TeatroAPI.csproj", "{DDDF16C6-8347-41A5-9E93-EC599662B311}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6A03AD70-E611-4799-97CB-3DADBDF8A3EF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAPI.Data", "BankAPI.Data\BankAPI.Data.csproj", "{2DAF906D-FD67-4933-A4C4-61488241F099}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeatroAPI.Data", "TeatroAPI.Data\TeatroAPI.Data.csproj", "{2DAF906D-FD67-4933-A4C4-61488241F099}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankAPI.Model", "BankAPI.Model\BankAPI.Model.csproj", "{6B759F6F-2E15-4DA7-A849-1B752F5517AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TeatroAPI.Model", "TeatroAPI.Model\TeatroAPI.Model.csproj", "{6B759F6F-2E15-4DA7-A849-1B752F5517AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankAPI.Service", "BankAPI.Service\BankAPI.Service.csproj", "{0FAECD4E-EEC9-4EDD-B882-A6219A27AF38}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeatroAPI.Service", "TeatroAPI.Service\TeatroAPI.Service.csproj", "{0FAECD4E-EEC9-4EDD-B882-A6219A27AF38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

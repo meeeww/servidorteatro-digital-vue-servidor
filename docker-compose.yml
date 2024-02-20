@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   api:
-    container_name: bankapi_container
+    container_name: teatroapi
     image: bankapi:latest
     build:
       context: .
@@ -10,12 +10,11 @@ services:
       - "6949:80"
     env_file:
       - .env
-    #depends_on:
-      # - sqlserver
-      # - mysql
+    depends_on:
+      - sqlserver
 
   sqlserver:
-    container_name: sqlserverapi
+    container_name: teatrosqlserver
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
       - ACCEPT_EULA=Y
@@ -24,14 +23,3 @@ services:
       - "1433:1433"
     volumes:
       - ./datos_sqlserver/data:/var/opt/mssql/data
-
-  mysql:
-    image: mysql:8.3
-    container_name: mysqlapi
-    environment:
-      - MYSQL_ROOT_PASSWORD=bbddpruebas
-      - MYSQL_DATABASE=api_clase
-    ports:
-      - "3306:3306"
-    volumes:
-      - ./datos_mysql:/var/lib/mysql
