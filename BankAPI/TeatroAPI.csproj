@@ -25,9 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankAPI.Data\BankAPI.Data.csproj" />
-    <ProjectReference Include="..\BankAPI.Model\BankAPI.Model.csproj" />
-    <ProjectReference Include="..\BankAPI.Service\BankAPI.Service.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Data\TeatroAPI.Data.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Model\TeatroAPI.Model.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Service\TeatroAPI.Service.csproj" />
   </ItemGroup>
 
 </Project>

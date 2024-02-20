@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["BankAPI/BankAPI.csproj", "BankAPI/"]
-RUN dotnet restore "BankAPI/BankAPI.csproj"
+COPY ["TeatroAPI/TeatroAPI.csproj", "TeatroAPI/"]
+RUN dotnet restore "TeatroAPI/TeatroAPI.csproj"
 COPY . .
-WORKDIR "/src/BankAPI"
-RUN dotnet build "BankAPI.csproj" -c Release -o /app/build
+WORKDIR "/src/TeatroAPI"
+RUN dotnet build "TeatroAPI.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "BankAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "TeatroAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BankAPI.dll"]
+ENTRYPOINT ["dotnet", "TeatroAPI.dll"]
