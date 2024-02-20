@@ -1,6 +1,6 @@
-using Microsoft.EntityFrameworkCore;
 using TeatroAPI.Model;
 using TeatroAPI.DTOs;
+using BCrypt.Net;
 
 namespace TeatroAPI.Data
 {
@@ -102,6 +102,9 @@ namespace TeatroAPI.Data
 
         public void InsertUsuario(Usuario usuario)
         {
+            //bool isValidPassword = BCrypt.Net.BCrypt.Verify(passwordEnTextoPlano, hashAlmacenado);
+            usuario.Contra = BCrypt.Net.BCrypt.HashPassword(usuario.Contra);
+
             _context.Usuarios.Add(usuario);
             SaveChanges();
         }
