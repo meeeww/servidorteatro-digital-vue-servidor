@@ -1,9 +1,9 @@
 CREATE TABLE Usuarios (
     UserID INT IDENTITY PRIMARY KEY,
     Nombre VARCHAR(25),
-    Apellido VARCHAR(25)
+    Apellido VARCHAR(25),
     Email VARCHAR(255) UNIQUE,
-    Telefono VARCHAR(12)
+    Telefono VARCHAR(12),teatroapi
     Contra VARCHAR(255),
     Rol INT DEFAULT 0
 );

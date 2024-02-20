@@ -14,11 +14,11 @@ builder.Services.AddSwaggerGen(c =>
 
 //esto es para el migrate
 var connectionString = "Server=teatrosqlserver,1433;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;";
-builder.Services.AddDbContext<TeatroAPIAPIContext>(options =>
+builder.Services.AddDbContext<TeatroAPIContext>(options =>
     options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 
-builder.Services.AddScoped<ClientesService>();
-builder.Services.AddScoped<IClientesRepository, EfClientesRepository>();
+builder.Services.AddScoped<UsuarioService>();
+builder.Services.AddScoped<IUsuarioRepository, EFUsuarioRepository>();
 
 var app = builder.Build();
 

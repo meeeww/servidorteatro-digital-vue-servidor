@@ -13,29 +13,29 @@ namespace TeatroAPI.Services
             _usuarioRepository = usuarioRepository;
         }
 
-        public List<UsuarioDto> GetUsuario()
+        public List<UsuarioSimpleDto> GetUsuarios()
         {
             return _usuarioRepository.GetUsuarios();
         }
 
-        public UsuarioDto GetUsuarioById(int id)
+        public UsuarioSimpleDto GetUsuarioById(int id)
         {
             return _usuarioRepository.GetUsuarioById(id);
         }
 
-        public UsuarioDto GetUsuarioByEmail(string email)
+        public UsuarioSimpleDto GetUsuarioByEmail(string email)
         {
             return _usuarioRepository.GetUsuarioByEmail(email);
         }
 
-        public UsuarioDto GetUsuarioByTelefono(string email)
+        public UsuarioSimpleDto GetUsuarioByTelefono(string email)
         {
             return _usuarioRepository.GetUsuarioByTelefono(email);
         }
 
-        public UsuarioDto GetUsuarioByRol(string email)
+        public UsuarioSimpleDto GetUsuarioByRol(int rol)
         {
-            return _usuarioRepository.GetUsuarioByRol(email);
+            return _usuarioRepository.GetUsuarioByRol(rol);
         }
 
         public Usuario InsertUsuario(Usuario usuario)

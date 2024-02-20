@@ -13,113 +13,121 @@ namespace TeatroAPI.Data
             _context = context;
         }
 
-        public List<UsuarioDto> GetUsuarios()
+        public List<UsuarioSimpleDto> GetUsuarios()
         {
-            var clientes = _context.Clientes
-                .Include(cliente => cliente.Pedidos)
+            var usuarios = _context.Usuarios
                 .ToList();
 
-            var clientesDto = clientes.Select(p => new ClienteDto
+            var usuariosDto = usuarios.Select(u => new UsuarioSimpleDto
             {
-                ID_Cliente = p.ID_Cliente,
-                Nombre = p.Nombre,
-                Apellido = p.Apellido,
-                Email = p.Email,
-                Telefono = p.Telefono,
-                Direccion = p.Direccion,
+                UserID = u.UserID,
+                Nombre = u.Nombre,
+                Apellido = u.Apellido,
+                Email = u.Email,
+                Telefono = u.Telefono,
+                Rol = u.Rol,
 
-                Pedidos = p.Pedidos.Select(pi => new PedidoDto
-                {
-                    ID_Pedido = pi.ID_Pedido,
-                    Fecha = pi.Fecha,
-                    Total = pi.Total,
-                    Enviado = pi.Enviado,
-                    MetodoPago = pi.MetodoPago
-                }).ToList()
             }).ToList();
 
-            return clientesDto;
+            return usuariosDto;
         }
 
-        public ClienteDto GetClienteById(int id)
+        public UsuarioSimpleDto GetUsuarioById(int id)
         {
-            var cliente = _context.Clientes
-                .Where(cliente => cliente.ID_Cliente == id)
-                .Include(cliente => cliente.Pedidos)
-                .Select(c => new ClienteDto
+            var usuario = _context.Usuarios
+                .Where(usuario => usuario.UserID == id)
+                .Select(u => new UsuarioSimpleDto
                 {
-                    ID_Cliente = c.ID_Cliente,
-                    Nombre = c.Nombre,
-                    Apellido = c.Apellido,
-                    Email = c.Email,
-                    Telefono = c.Telefono,
-                    Direccion = c.Direccion,
-                    Pedidos = c.Pedidos.Select(p => new PedidoDto
-                    {
-                        ID_Pedido = p.ID_Pedido,
-                        Fecha = p.Fecha,
-                        Total = p.Total,
-                        Enviado = p.Enviado,
-                        MetodoPago = p.MetodoPago
-                    }).ToList()
+                    UserID = u.UserID,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    Email = u.Email,
+                    Telefono = u.Telefono,
+                    Rol = u.Rol,
                 }).FirstOrDefault();
 
-            return cliente;
+            return usuario;
         }
 
-        public ClienteDto GetClienteByEmail(string email)
+        public UsuarioSimpleDto GetUsuarioByEmail(string email)
         {
-            var cliente = _context.Clientes
-                .Where(cliente => cliente.Email == email)
-                .Include(cliente => cliente.Pedidos)
-                .Select(c => new ClienteDto
+            var usuario = _context.Usuarios
+                .Where(usuario => usuario.Email == email)
+                .Select(u => new UsuarioSimpleDto
                 {
-                    ID_Cliente = c.ID_Cliente,
-                    Nombre = c.Nombre,
-                    Apellido = c.Apellido,
-                    Email = c.Email,
-                    Telefono = c.Telefono,
-                    Direccion = c.Direccion,
-                    Pedidos = c.Pedidos.Select(p => new PedidoDto
-                    {
-                        ID_Pedido = p.ID_Pedido,
-                        Fecha = p.Fecha,
-                        Total = p.Total,
-                        Enviado = p.Enviado,
-                        MetodoPago = p.MetodoPago
-                    }).ToList()
+                    UserID = u.UserID,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    Email = u.Email,
+                    Telefono = u.Telefono,
+                    Rol = u.Rol,
                 }).FirstOrDefault();
 
-            return cliente;
+            return usuario;
         }
 
-        public void InsertCliente(Cliente cliente)
+        public UsuarioSimpleDto GetUsuarioByTelefono(string telefono)
         {
-            _context.Clientes.Add(cliente);
+            var usuario = _context.Usuarios
+                .Where(usuario => usuario.Telefono == telefono)
+                .Select(u => new UsuarioSimpleDto
+                {
+                    UserID = u.UserID,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    Email = u.Email,
+                    Telefono = u.Telefono,
+                    Rol = u.Rol,
+                }).FirstOrDefault();
+
+            return usuario;
+        }
+
+        public UsuarioSimpleDto GetUsuarioByRol(int rol)
+        {
+            var usuario = _context.Usuarios
+                .Where(usuario => usuario.Rol == rol)
+                .Select(u => new UsuarioSimpleDto
+                {
+                    UserID = u.UserID,
+                    Nombre = u.Nombre,
+                    Apellido = u.Apellido,
+                    Email = u.Email,
+                    Telefono = u.Telefono,
+                    Rol = u.Rol,
+                }).FirstOrDefault();
+
+            return usuario;
+        }
+
+        public void InsertUsuario(Usuario usuario)
+        {
+            _context.Usuarios.Add(usuario);
             SaveChanges();
         }
 
-        public void UpdateCliente(Cliente cliente)
+        public void UpdateUsuario(Usuario usuario)
         {
-            var existingCliente = _context.Clientes.FirstOrDefault(c => c.ID_Cliente == cliente.ID_Cliente);
-            if (existingCliente != null)
+            var existingUsuario = _context.Usuarios.FirstOrDefault(u => u.UserID == usuario.UserID);
+            if (existingUsuario != null)
             {
-                existingCliente.Nombre = cliente.Nombre;
-                existingCliente.Apellido = cliente.Apellido;
-                existingCliente.Email = cliente.Email;
-                existingCliente.Telefono = cliente.Telefono;
-                existingCliente.Direccion = cliente.Direccion;
+                existingUsuario.Nombre = usuario.Nombre;
+                existingUsuario.Apellido = usuario.Apellido;
+                existingUsuario.Email = usuario.Email;
+                existingUsuario.Telefono = usuario.Telefono;
+                existingUsuario.Contra = usuario.Contra;
+                existingUsuario.Rol = usuario.Rol;
 
                 _context.SaveChanges();
             }
         }
 
-        public void DeleteCliente(int id)
+        public void DeleteUsuario(int id)
         {
-            var cliente = _context.Clientes.Find(id);
-            if (cliente != null)
+            var usuario = _context.Usuarios.Find(id);
+            if (usuario != null)
             {
-                _context.Clientes.Remove(cliente);
+                _context.Usuarios.Remove(usuario);
                 SaveChanges();
             }
         }

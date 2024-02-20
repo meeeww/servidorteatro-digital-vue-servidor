@@ -11,8 +11,12 @@ public class TeatroAPIContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Usuario>()
+            .Property(u => u.UserID)
+            .ValueGeneratedOnAdd();
     }
 
-    public DbSet<Usuario> Usuario { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 
 }
