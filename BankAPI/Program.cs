@@ -38,7 +38,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.UseCors("Pol�ticaCORS");
+app.UseCors("PoliticaCORS");
 
 app.UseHttpsRedirection();
 
