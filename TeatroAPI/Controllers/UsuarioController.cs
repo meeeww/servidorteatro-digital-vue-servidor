@@ -2,11 +2,13 @@
 using TeatroAPI.Model;
 using TeatroAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TeatroAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
+    [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
         private readonly UsuarioService _usuarioService;
@@ -107,7 +109,7 @@ namespace TeatroAPI.Controllers
 
 
         [HttpPost]
-        public IActionResult InsertUsuario([FromBody] UsuarioSimpleDto usuarioDto)
+        public IActionResult InsertUsuario([FromBody] UsuarioInsertDto usuarioDto)
         {
             try
             {
