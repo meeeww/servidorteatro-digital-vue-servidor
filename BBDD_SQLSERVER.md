@@ -3,7 +3,7 @@ CREATE TABLE Usuarios (
     Nombre VARCHAR(255),
     Email VARCHAR(255) UNIQUE,
     Contraseña VARCHAR(255),
-    Rol INT
+    Rol INT DEFAULT 0
 );
 
 CREATE TABLE Sesiones (
