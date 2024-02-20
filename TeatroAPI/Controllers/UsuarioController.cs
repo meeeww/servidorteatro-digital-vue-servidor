@@ -114,10 +114,15 @@ namespace TeatroAPI.Controllers
                 if (usuarioDto == null)
                     return BadRequest("El usuario no puede ser nulo.");
 
-                var usuarioExistente = _usuarioService.GetUsuarioByEmail(usuarioDto.Email);
+                var emailExistente = _usuarioService.GetUsuarioByEmail(usuarioDto.Email);
+                var telefonoExistente = _usuarioService.GetUsuarioByTelefono(usuarioDto.Telefono);
 
-                if (usuarioExistente != null)
-                    return Conflict("El usuario ya existe.");
+                if (emailExistente != null)
+                    return Conflict("El correo ya está en uso.");
+
+                if (telefonoExistente != null)
+                    return Conflict("El teléfono ya está en uso.");
+
 
                 var usuario = new Usuario
                 {

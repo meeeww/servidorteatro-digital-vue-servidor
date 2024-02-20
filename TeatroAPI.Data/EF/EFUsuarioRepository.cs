@@ -83,7 +83,7 @@ namespace TeatroAPI.Data
             return usuario;
         }
 
-        public UsuarioSimpleDto GetUsuarioByRol(int rol)
+        public List<UsuarioSimpleDto> GetUsuarioByRol(int rol)
         {
             var usuario = _context.Usuarios
                 .Where(usuario => usuario.Rol == rol)
@@ -95,7 +95,7 @@ namespace TeatroAPI.Data
                     Email = u.Email,
                     Telefono = u.Telefono,
                     Rol = u.Rol,
-                }).FirstOrDefault();
+                }).ToList();
 
             return usuario;
         }

@@ -3,7 +3,7 @@ CREATE TABLE Usuarios (
     Nombre VARCHAR(25),
     Apellido VARCHAR(25),
     Email VARCHAR(255) UNIQUE,
-    Telefono VARCHAR(12),teatroapi
+    Telefono VARCHAR(12) UNIQUE,
     Contra VARCHAR(255),
     Rol INT DEFAULT 0
 );

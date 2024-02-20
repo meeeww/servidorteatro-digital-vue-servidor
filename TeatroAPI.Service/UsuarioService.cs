@@ -33,7 +33,7 @@ namespace TeatroAPI.Services
             return _usuarioRepository.GetUsuarioByTelefono(email);
         }
 
-        public UsuarioSimpleDto GetUsuarioByRol(int rol)
+        public List<UsuarioSimpleDto> GetUsuarioByRol(int rol)
         {
             return _usuarioRepository.GetUsuarioByRol(rol);
         }
