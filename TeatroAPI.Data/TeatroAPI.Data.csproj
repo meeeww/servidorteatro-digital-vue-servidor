@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankAPI.Model\BankAPI.Model.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Model\TeatroAPI.Model.csproj" />
   </ItemGroup>
 
 </Project>

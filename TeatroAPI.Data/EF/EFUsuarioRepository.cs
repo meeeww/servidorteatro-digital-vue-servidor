@@ -1,19 +1,19 @@
 using Microsoft.EntityFrameworkCore;
-using BankAPI.Model;
-using BankAPI.DTOs;
+using TeatroAPI.Model;
+using TeatroAPI.DTOs;
 
-namespace BankAPI.Data
+namespace TeatroAPI.Data
 {
-    public class EfClientesRepository : IClientesRepository
+    public class EFUsuarioRepository : IUsuarioRepository
     {
-        private readonly BankAPIContext _context;
+        private readonly TeatroAPIContext _context;
 
-        public EfClientesRepository(BankAPIContext context)
+        public EFUsuarioRepository(TeatroAPIContext context)
         {
             _context = context;
         }
 
-        public List<ClienteDto> GetClientes()
+        public List<UsuarioDto> GetUsuarios()
         {
             var clientes = _context.Clientes
                 .Include(cliente => cliente.Pedidos)

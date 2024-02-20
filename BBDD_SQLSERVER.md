@@ -1,8 +1,10 @@
 CREATE TABLE Usuarios (
     UserID INT IDENTITY PRIMARY KEY,
-    Nombre VARCHAR(255),
+    Nombre VARCHAR(25),
+    Apellido VARCHAR(25)
     Email VARCHAR(255) UNIQUE,
-    Contraseña VARCHAR(255),
+    Telefono VARCHAR(12)
+    Contra VARCHAR(255),
     Rol INT DEFAULT 0
 );
 

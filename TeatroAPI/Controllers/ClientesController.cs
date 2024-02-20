@@ -1,9 +1,9 @@
-﻿using BankAPI.DTOs;
-using BankAPI.Model;
-using BankAPI.Services;
+﻿using TeatroAPI.DTOs;
+using TeatroAPI.Model;
+using TeatroAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BankAPI.Controllers
+namespace TeatroAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
