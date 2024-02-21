@@ -31,4 +31,8 @@
     <ProjectReference Include="..\TeatroAPI.Service\TeatroAPI.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Extensions\" />
+  </ItemGroup>
+
 </Project>
