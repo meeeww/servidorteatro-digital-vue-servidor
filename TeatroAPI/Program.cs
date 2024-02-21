@@ -1,6 +1,7 @@
 using TeatroAPI;
 using TeatroAPI.Data;
 using TeatroAPI.Services;
+using TeatroAPI.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -31,26 +32,9 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.AddDbContext<TeatroAPIContext>(options =>
     options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(options =>
-    {
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuer = true,
-            ValidateAudience = true,
-            ValidateLifetime = true,
-            ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidAudience = builder.Configuration["Jwt:Audience"],
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-        };
-    });
+builder.Services.AddJwtAuthentication(builder.Configuration);
 
-//meter en otra clase con override
-builder.Services.AddScoped<UsuarioService>();
-builder.Services.AddScoped<IUsuarioRepository, EFUsuarioRepository>();
-
-builder.Services.AddScoped<SesionService>();
-builder.Services.AddScoped<ISesionRepository, EFSesionRepository>();
+builder.Services.AddApplicationServices();
 
 var app = builder.Build();
 
