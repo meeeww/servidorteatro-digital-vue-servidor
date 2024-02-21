@@ -66,6 +66,20 @@ namespace TeatroAPI.Data
             return usuario;
         }
 
+        public UsuarioContraDto GetUsuarioContraByEmail(string email)
+        {
+            var usuario = _context.Usuarios
+                .Where(usuario => usuario.Email == email)
+                .Select(u => new UsuarioContraDto
+                {
+                    UserID = u.UserID,
+                    Email = u.Email,
+                    Contra = u.Contra,
+                }).FirstOrDefault();
+
+            return usuario;
+        }
+
         public UsuarioSimpleDto GetUsuarioByTelefono(string telefono)
         {
             var usuario = _context.Usuarios
@@ -102,7 +116,6 @@ namespace TeatroAPI.Data
 
         public void InsertUsuario(Usuario usuario)
         {
-            //bool isValidPassword = BCrypt.Net.BCrypt.Verify(passwordEnTextoPlano, hashAlmacenado);
             usuario.Contra = BCrypt.Net.BCrypt.HashPassword(usuario.Contra);
 
             _context.Usuarios.Add(usuario);

@@ -107,7 +107,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult InsertUsuario([FromBody] UsuarioInsertDto usuarioDto)
         {

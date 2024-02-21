@@ -31,6 +31,13 @@
         public int Rol { get; set; }
     }
 
+    public class UsuarioContraDto
+    {
+        public int UserID { get; set; }
+        public string? Email { get; set; }
+        public string? Contra { get; set; }
+    }
+
     public class UsuarioUpdateDto
     {
         public string UserID { get; set; }

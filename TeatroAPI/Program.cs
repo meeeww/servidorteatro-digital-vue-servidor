@@ -15,8 +15,19 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "TeatroAPI", Version = "v1" });
 });
 
-//esto es para el migrate
-var connectionString = "Server=teatrosqlserver,1433;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;";
+var connectionStringLocal = builder.Configuration.GetConnectionString("TeatroAPI");
+
+var enDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
+
+var connectionString = enDocker && !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("STRING_CONEXION"))
+    ? Environment.GetEnvironmentVariable("STRING_CONEXION")
+    : connectionStringLocal;
+
+if (string.IsNullOrEmpty(connectionString))
+{
+    throw new InvalidOperationException("No se ha configurado un tipo de base de datos válido.");
+}
+
 builder.Services.AddDbContext<TeatroAPIContext>(options =>
     options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 
@@ -28,15 +39,18 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
-            ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
         };
     });
 
+//meter en otra clase con override
 builder.Services.AddScoped<UsuarioService>();
 builder.Services.AddScoped<IUsuarioRepository, EFUsuarioRepository>();
+
+builder.Services.AddScoped<SesionService>();
+builder.Services.AddScoped<ISesionRepository, EFSesionRepository>();
 
 var app = builder.Build();
 

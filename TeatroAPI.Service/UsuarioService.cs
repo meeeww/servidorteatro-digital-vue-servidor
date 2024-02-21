@@ -28,6 +28,11 @@ namespace TeatroAPI.Services
             return _usuarioRepository.GetUsuarioByEmail(email);
         }
 
+        public UsuarioContraDto GetUsuarioContraByEmail(string email)
+        {
+            return _usuarioRepository.GetUsuarioContraByEmail(email);
+        }
+
         public UsuarioSimpleDto GetUsuarioByTelefono(string email)
         {
             return _usuarioRepository.GetUsuarioByTelefono(email);
