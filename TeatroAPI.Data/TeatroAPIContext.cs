@@ -15,8 +15,13 @@ public class TeatroAPIContext : DbContext
         modelBuilder.Entity<Usuario>()
             .Property(u => u.UserID)
             .ValueGeneratedOnAdd();
+
+        modelBuilder.Entity<Sesion>()
+           .Property(s => s.SessionID)
+           .ValueGeneratedOnAdd();
     }
 
     public DbSet<Usuario> Usuarios { get; set; }
+    public DbSet<Sesion> Sesiones { get; set; }
 
 }

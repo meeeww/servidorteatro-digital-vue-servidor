@@ -8,6 +8,7 @@ namespace TeatroAPI.Data
         List<UsuarioSimpleDto> GetUsuarios();
         UsuarioSimpleDto GetUsuarioById(int id);
         UsuarioSimpleDto GetUsuarioByEmail(string email);
+        UsuarioContraDto GetUsuarioContraByEmail(string email);
         UsuarioSimpleDto GetUsuarioByTelefono(string telefono);
         List<UsuarioSimpleDto> GetUsuarioByRol(int rol);
         void InsertUsuario(Usuario usuario);
