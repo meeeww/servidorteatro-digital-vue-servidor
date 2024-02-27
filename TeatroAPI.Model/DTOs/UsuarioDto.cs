@@ -8,7 +8,6 @@
         public string? Email { get; set; }
         public string? Telefono { get; set; }
         public int Rol { get; set; }
-        // añadir reservas en un futuro
     }
 
     public class UsuarioSimpleDto
@@ -34,8 +33,9 @@
     public class UsuarioContraDto
     {
         public int UserID { get; set; }
-        public string? Email { get; set; }
-        public string? Contra { get; set; }
+        public string Email { get; set; }
+        public int Rol { get; set; }
+        public string Contra { get; set; }
     }
 
     public class UsuarioUpdateDto

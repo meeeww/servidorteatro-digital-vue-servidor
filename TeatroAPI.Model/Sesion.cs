@@ -12,5 +12,6 @@ namespace TeatroAPI.Model
         public DateTime? FechaFin { get; set; }
         public string IP { get; set; }
         public string Dispositivo { get; set; }
+        public Usuario Usuario { get; set; }
     }
 }

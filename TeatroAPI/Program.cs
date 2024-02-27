@@ -18,17 +18,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var connectionStringLocal = builder.Configuration.GetConnectionString("TeatroAPI");
 
-var enDocker = Environment.GetEnvironmentVariable("DOTNET_RUNNING_IN_CONTAINER") == "true";
-
-var connectionString = enDocker && !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("STRING_CONEXION"))
-    ? Environment.GetEnvironmentVariable("STRING_CONEXION")
-    : connectionStringLocal;
-
-if (string.IsNullOrEmpty(connectionString))
-{
-    throw new InvalidOperationException("No se ha configurado un tipo de base de datos válido.");
-}
-
+var connectionString = "Server=localhost,1433;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;";
 builder.Services.AddDbContext<TeatroAPIContext>(options =>
     options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 

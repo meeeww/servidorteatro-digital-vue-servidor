@@ -48,7 +48,6 @@ CREATE TABLE Reservas (
     ReservaID INT IDENTITY PRIMARY KEY,
     FuncionID INT,
     UserID INT,
-    Cantidad INT,
     FechaReserva DATETIME,
     FOREIGN KEY (FuncionID) REFERENCES Funciones(FuncionID),
     FOREIGN KEY (UserID) REFERENCES Usuarios(UserID)
