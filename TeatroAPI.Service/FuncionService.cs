@@ -13,9 +13,9 @@ namespace TeatroAPI.Services
             _funcionRepository = funcionRepository;
         }
 
-        public List<FuncionSimpleDto> GetFuncions()
+        public List<FuncionSimpleDto> GetFunciones()
         {
-            return _funcionRepository.GetFuncions();
+            return _funcionRepository.GetFunciones();
         }
 
         public FuncionSimpleDto GetFuncionById(int id)
