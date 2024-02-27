@@ -9,6 +9,6 @@ namespace TeatroAPI.Data
         FuncionSimpleDto GetFuncionById(int id);
         void InsertFuncion(Funcion funcion);
         void UpdateFuncion(Funcion funcion);
-        void DeleteSala(int id);
+        void DeleteFuncion(int id);
     }
 }

@@ -35,9 +35,9 @@ namespace TeatroAPI.Services
             _funcionRepository.InsertFuncion(funcion);
         }
 
-        public void DeleteSala(int id)
+        public void DeleteFuncion(int id)
         {
-            _funcionRepository.DeleteSala(id);
+            _funcionRepository.DeleteFuncion(id);
         }
     }
 }

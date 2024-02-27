@@ -35,9 +35,9 @@ namespace TeatroAPI.Services
             _obraRepository.InsertObra(obra);
         }
 
-        public void DeleteSala(int id)
+        public void DeleteObra(int id)
         {
-            _obraRepository.DeleteSala(id);
+            _obraRepository.DeleteObra(id);
         }
     }
 }

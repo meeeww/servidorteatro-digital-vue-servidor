@@ -45,9 +45,9 @@ namespace TeatroAPI.Services
             _reservaRepository.InsertReserva(reserva);
         }
 
-        public void DeleteSala(int id)
+        public void DeleteReserva(int id)
         {
-            _reservaRepository.DeleteSala(id);
+            _reservaRepository.DeleteReserva(id);
         }
     }
 }
