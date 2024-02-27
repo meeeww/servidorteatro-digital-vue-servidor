@@ -3,6 +3,7 @@ using TeatroAPI.Model;
 using TeatroAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using TeatroAPI.Utils;
 
 namespace TeatroAPI.Controllers
 {
@@ -107,7 +108,6 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpPost]
         public IActionResult InsertUsuario([FromBody] UsuarioInsertDto usuarioDto)
         {
@@ -132,7 +132,7 @@ namespace TeatroAPI.Controllers
                     Apellido = usuarioDto.Apellido,
                     Email = usuarioDto.Email,
                     Telefono = usuarioDto.Telefono,
-                    Contra = usuarioDto.Contra,
+                    Contra = Hashing.ToSHA256(usuarioDto.Contra),
                     Rol = usuarioDto.Rol,
                 };
 
