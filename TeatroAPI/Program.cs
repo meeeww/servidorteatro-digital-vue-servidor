@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen(c =>
 
 var connectionStringLocal = builder.Configuration.GetConnectionString("TeatroAPI");
 
-var connectionString = "Server=localhost,1433;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;";
+var connectionString = "Server=teatrosqlserver,1433;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;";
 builder.Services.AddDbContext<TeatroAPIContext>(options =>
     options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 

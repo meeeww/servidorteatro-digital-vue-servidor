@@ -12,5 +12,7 @@ namespace TeatroAPI.Model
         public int? Precio { get; set; }
         public Obra? Obra { get; set; }
         public Sala? Sala { get; set; }
+
+        public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
     }
 }

@@ -12,8 +12,8 @@ using TeatroAPI.Data;
 namespace TeatroAPI.Data.Migrations
 {
     [DbContext(typeof(TeatroAPIContext))]
-    [Migration("20240227121458_NombreDeLaMigracion")]
-    partial class NombreDeLaMigracion
+    [Migration("20240227190047_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,27 +39,17 @@ namespace TeatroAPI.Data.Migrations
                     b.Property<int?>("ObraID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ObraID1")
-                        .HasColumnType("int");
-
                     b.Property<int?>("Precio")
                         .HasColumnType("int");
 
                     b.Property<int?>("SalaID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalaID1")
-                        .HasColumnType("int");
-
                     b.HasKey("FuncionID");
 
                     b.HasIndex("ObraID");
 
-                    b.HasIndex("ObraID1");
-
                     b.HasIndex("SalaID");
-
-                    b.HasIndex("SalaID1");
 
                     b.ToTable("Funciones");
                 });
@@ -106,24 +96,14 @@ namespace TeatroAPI.Data.Migrations
                     b.Property<int>("FuncionID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("FuncionID1")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("UsuarioUserID")
                         .HasColumnType("int");
 
                     b.HasKey("ReservaID");
 
                     b.HasIndex("FuncionID");
 
-                    b.HasIndex("FuncionID1");
-
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UsuarioUserID");
 
                     b.ToTable("Reservas");
                 });
@@ -176,14 +156,9 @@ namespace TeatroAPI.Data.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsuarioUserID")
-                        .HasColumnType("int");
-
                     b.HasKey("SessionID");
 
                     b.HasIndex("UserID");
-
-                    b.HasIndex("UsuarioUserID");
 
                     b.ToTable("Sesiones");
                 });
@@ -221,21 +196,13 @@ namespace TeatroAPI.Data.Migrations
 
             modelBuilder.Entity("TeatroAPI.Model.Funcion", b =>
                 {
-                    b.HasOne("TeatroAPI.Model.Obra", null)
-                        .WithMany()
+                    b.HasOne("TeatroAPI.Model.Obra", "Obra")
+                        .WithMany("Funciones")
                         .HasForeignKey("ObraID");
 
-                    b.HasOne("TeatroAPI.Model.Obra", "Obra")
-                        .WithMany()
-                        .HasForeignKey("ObraID1");
-
-                    b.HasOne("TeatroAPI.Model.Sala", null)
-                        .WithMany()
-                        .HasForeignKey("SalaID");
-
                     b.HasOne("TeatroAPI.Model.Sala", "Sala")
-                        .WithMany()
-                        .HasForeignKey("SalaID1");
+                        .WithMany("Funciones")
+                        .HasForeignKey("SalaID");
 
                     b.Navigation("Obra");
 
@@ -244,25 +211,17 @@ namespace TeatroAPI.Data.Migrations
 
             modelBuilder.Entity("TeatroAPI.Model.Reserva", b =>
                 {
-                    b.HasOne("TeatroAPI.Model.Funcion", null)
-                        .WithMany()
+                    b.HasOne("TeatroAPI.Model.Funcion", "Funcion")
+                        .WithMany("Reservas")
                         .HasForeignKey("FuncionID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TeatroAPI.Model.Funcion", "Funcion")
-                        .WithMany()
-                        .HasForeignKey("FuncionID1");
-
-                    b.HasOne("TeatroAPI.Model.Usuario", null)
-                        .WithMany()
+                    b.HasOne("TeatroAPI.Model.Usuario", "Usuario")
+                        .WithMany("Reservas")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("TeatroAPI.Model.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioUserID");
 
                     b.Navigation("Funcion");
 
@@ -271,19 +230,35 @@ namespace TeatroAPI.Data.Migrations
 
             modelBuilder.Entity("TeatroAPI.Model.Sesion", b =>
                 {
-                    b.HasOne("TeatroAPI.Model.Usuario", null)
-                        .WithMany()
+                    b.HasOne("TeatroAPI.Model.Usuario", "Usuario")
+                        .WithMany("Sesiones")
                         .HasForeignKey("UserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TeatroAPI.Model.Usuario", "Usuario")
-                        .WithMany()
-                        .HasForeignKey("UsuarioUserID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Usuario");
+                });
+
+            modelBuilder.Entity("TeatroAPI.Model.Funcion", b =>
+                {
+                    b.Navigation("Reservas");
+                });
+
+            modelBuilder.Entity("TeatroAPI.Model.Obra", b =>
+                {
+                    b.Navigation("Funciones");
+                });
+
+            modelBuilder.Entity("TeatroAPI.Model.Sala", b =>
+                {
+                    b.Navigation("Funciones");
+                });
+
+            modelBuilder.Entity("TeatroAPI.Model.Usuario", b =>
+                {
+                    b.Navigation("Reservas");
+
+                    b.Navigation("Sesiones");
                 });
 #pragma warning restore 612, 618
         }

@@ -11,5 +11,7 @@ namespace TeatroAPI.Model
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public string? Director { get; set; }
+
+        public virtual ICollection<Funcion> Funciones { get; set; } = new List<Funcion>();
     }
 }

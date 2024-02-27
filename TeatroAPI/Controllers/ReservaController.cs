@@ -53,7 +53,7 @@ namespace TeatroAPI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("name={name}")]
+        [HttpGet("funcion={funcion}")]
         public IActionResult GetReservasByFuncion(int funcion)
         {
             try
@@ -73,7 +73,7 @@ namespace TeatroAPI.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("name={name}")]
+        [HttpGet("cliente={cliente}")]
         public IActionResult GetReservasByCliente(int cliente)
         {
             try

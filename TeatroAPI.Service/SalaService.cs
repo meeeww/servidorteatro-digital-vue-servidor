@@ -25,7 +25,7 @@ namespace TeatroAPI.Services
 
         public SalaSimpleDto GetSalaByName(string name)
         {
-            return _salaRepository.GetSalaByEmail(name);
+            return _salaRepository.GetSalaByName(name);
         }
 
         public Sala InsertSala(Sala sala)

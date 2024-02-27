@@ -69,9 +69,7 @@ namespace TeatroAPI.Data.Migrations
                     ObraID = table.Column<int>(type: "int", nullable: true),
                     SalaID = table.Column<int>(type: "int", nullable: true),
                     FechaHora = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    Precio = table.Column<int>(type: "int", nullable: true),
-                    ObraID1 = table.Column<int>(type: "int", nullable: true),
-                    SalaID1 = table.Column<int>(type: "int", nullable: true)
+                    Precio = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -82,18 +80,8 @@ namespace TeatroAPI.Data.Migrations
                         principalTable: "Obras",
                         principalColumn: "ObraID");
                     table.ForeignKey(
-                        name: "FK_Funciones_Obras_ObraID1",
-                        column: x => x.ObraID1,
-                        principalTable: "Obras",
-                        principalColumn: "ObraID");
-                    table.ForeignKey(
                         name: "FK_Funciones_Salas_SalaID",
                         column: x => x.SalaID,
-                        principalTable: "Salas",
-                        principalColumn: "SalaID");
-                    table.ForeignKey(
-                        name: "FK_Funciones_Salas_SalaID1",
-                        column: x => x.SalaID1,
                         principalTable: "Salas",
                         principalColumn: "SalaID");
                 });
@@ -109,8 +97,7 @@ namespace TeatroAPI.Data.Migrations
                     FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     FechaFin = table.Column<DateTime>(type: "datetime2", nullable: true),
                     IP = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Dispositivo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UsuarioUserID = table.Column<int>(type: "int", nullable: false)
+                    Dispositivo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -118,12 +105,6 @@ namespace TeatroAPI.Data.Migrations
                     table.ForeignKey(
                         name: "FK_Sesiones_Usuarios_UserID",
                         column: x => x.UserID,
-                        principalTable: "Usuarios",
-                        principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Sesiones_Usuarios_UsuarioUserID",
-                        column: x => x.UsuarioUserID,
                         principalTable: "Usuarios",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
@@ -137,9 +118,7 @@ namespace TeatroAPI.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FuncionID = table.Column<int>(type: "int", nullable: false),
                     UserID = table.Column<int>(type: "int", nullable: false),
-                    FechaReserva = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FuncionID1 = table.Column<int>(type: "int", nullable: true),
-                    UsuarioUserID = table.Column<int>(type: "int", nullable: true)
+                    FechaReserva = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -151,21 +130,11 @@ namespace TeatroAPI.Data.Migrations
                         principalColumn: "FuncionID",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Reservas_Funciones_FuncionID1",
-                        column: x => x.FuncionID1,
-                        principalTable: "Funciones",
-                        principalColumn: "FuncionID");
-                    table.ForeignKey(
                         name: "FK_Reservas_Usuarios_UserID",
                         column: x => x.UserID,
                         principalTable: "Usuarios",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Reservas_Usuarios_UsuarioUserID",
-                        column: x => x.UsuarioUserID,
-                        principalTable: "Usuarios",
-                        principalColumn: "UserID");
                 });
 
             migrationBuilder.CreateIndex(
@@ -174,19 +143,9 @@ namespace TeatroAPI.Data.Migrations
                 column: "ObraID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Funciones_ObraID1",
-                table: "Funciones",
-                column: "ObraID1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Funciones_SalaID",
                 table: "Funciones",
                 column: "SalaID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Funciones_SalaID1",
-                table: "Funciones",
-                column: "SalaID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Reservas_FuncionID",
@@ -194,29 +153,14 @@ namespace TeatroAPI.Data.Migrations
                 column: "FuncionID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservas_FuncionID1",
-                table: "Reservas",
-                column: "FuncionID1");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Reservas_UserID",
                 table: "Reservas",
                 column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Reservas_UsuarioUserID",
-                table: "Reservas",
-                column: "UsuarioUserID");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Sesiones_UserID",
                 table: "Sesiones",
                 column: "UserID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Sesiones_UsuarioUserID",
-                table: "Sesiones",
-                column: "UsuarioUserID");
         }
 
         /// <inheritdoc />

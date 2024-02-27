@@ -12,5 +12,8 @@ namespace TeatroAPI.Model
         public string? Telefono { get; set; }
         public string? Contra { get; set; }
         public int Rol { get; set; }
+
+        public virtual ICollection<Sesion> Sesiones { get; set; } = new List<Sesion>();
+        public virtual ICollection<Reserva> Reservas { get; set; } = new List<Reserva>();
     }
 }
