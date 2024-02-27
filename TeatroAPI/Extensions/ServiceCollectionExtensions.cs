@@ -14,6 +14,18 @@ namespace TeatroAPI.Extensions
             services.AddScoped<SesionService>();
             services.AddScoped<ISesionRepository, EFSesionRepository>();
 
+            services.AddScoped<SalaService>();
+            services.AddScoped<ISalaRepository, EFSalaRepository>();
+
+            services.AddScoped<ReservaService>();
+            services.AddScoped<IReservaRepository, EFReservaRepository>();
+
+            services.AddScoped<ObraService>();
+            services.AddScoped<IObraRepository, EFObraRepository>();
+
+            services.AddScoped<FuncionService>();
+            services.AddScoped<IFuncionRepository, EFFuncionRepository>();
+
             return services;
         }
     }
