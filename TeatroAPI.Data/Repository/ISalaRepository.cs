@@ -8,7 +8,7 @@ namespace TeatroAPI.Data
         List<SalaSimpleDto> GetSalas();
         SalaSimpleDto GetSalaById(int id);
         SalaSimpleDto GetSalaByName(string name);
-        Sala InsertSala(Sala sala);
+        void InsertSala(Sala sala);
         void UpdateSala(Sala sala);
         void DeleteSala(int id);
     }

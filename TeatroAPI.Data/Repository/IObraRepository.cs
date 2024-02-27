@@ -7,8 +7,8 @@ namespace TeatroAPI.Data
     {
         List<ObraSimpleDto> GetObras();
         ObraSimpleDto GetObraById(int id);
-        Obra InsertObra(Obra obra);
+        void InsertObra(Obra obra);
         void UpdateObra(Obra obra);
-        void DeleteSala(int id);
+        void DeleteObra(int id);
     }
 }
