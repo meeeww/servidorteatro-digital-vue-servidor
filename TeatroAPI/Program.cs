@@ -16,9 +16,10 @@ builder.Services.AddSwaggerGen(c =>
     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "TeatroAPI", Version = "v1" });
 });
 
-var connectionStringLocal = builder.Configuration.GetConnectionString("TeatroAPI");
+var connectionString = Environment.GetEnvironmentVariable("DOCKER_CONTAINER") != null
+    ? Environment.GetEnvironmentVariable("STRING_CONEXION")
+    : builder.Configuration.GetConnectionString("DefaultConnection");
 
-var connectionString = "Server=teatrosqlserver,1433;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;";
 builder.Services.AddDbContext<TeatroAPIContext>(options =>
     options.UseSqlServer(connectionString).LogTo(Console.WriteLine, LogLevel.Information));
 

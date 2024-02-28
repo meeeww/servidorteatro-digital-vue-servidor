@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace TeatroAPI.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CreacionInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -135,6 +137,53 @@ namespace TeatroAPI.Data.Migrations
                         principalTable: "Usuarios",
                         principalColumn: "UserID",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Obras",
+                columns: new[] { "ObraID", "Descripcion", "Director", "FechaFin", "FechaInicio", "Titulo" },
+                values: new object[,]
+                {
+                    { 1, null, "Pedro Calderón de la Barca", null, null, "La vida es sueño" },
+                    { 2, null, "William Shakespeare", null, null, "Hamlet" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Salas",
+                columns: new[] { "SalaID", "Capacidad", "Nombre" },
+                values: new object[,]
+                {
+                    { 1, 100, "Sala Principal" },
+                    { 2, 50, "Sala Secundaria" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Usuarios",
+                columns: new[] { "UserID", "Apellido", "Contra", "Email", "Nombre", "Rol", "Telefono" },
+                values: new object[,]
+                {
+                    { 1, null, null, "juanperez@mail.com", "Juan Pérez", 0, null },
+                    { 2, null, null, "analopez@mail.com", "Ana López", 0, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Funciones",
+                columns: new[] { "FuncionID", "FechaHora", "ObraID", "Precio", "SalaID" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 3, 15, 20, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 1 },
+                    { 2, new DateTime(2024, 3, 16, 20, 0, 0, 0, DateTimeKind.Unspecified), 2, null, 2 },
+                    { 3, new DateTime(2024, 3, 17, 18, 0, 0, 0, DateTimeKind.Unspecified), 1, null, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Reservas",
+                columns: new[] { "ReservaID", "FechaReserva", "FuncionID", "UserID" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, 1 },
+                    { 2, new DateTime(2024, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, 2 },
+                    { 3, new DateTime(2024, 2, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, 1 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -49,6 +49,29 @@ namespace TeatroAPI.Data.Migrations
                     b.HasIndex("SalaID");
 
                     b.ToTable("Funciones");
+
+                    b.HasData(
+                        new
+                        {
+                            FuncionID = 1,
+                            FechaHora = new DateTime(2024, 3, 15, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObraID = 1,
+                            SalaID = 1
+                        },
+                        new
+                        {
+                            FuncionID = 2,
+                            FechaHora = new DateTime(2024, 3, 16, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObraID = 2,
+                            SalaID = 2
+                        },
+                        new
+                        {
+                            FuncionID = 3,
+                            FechaHora = new DateTime(2024, 3, 17, 18, 0, 0, 0, DateTimeKind.Unspecified),
+                            ObraID = 1,
+                            SalaID = 1
+                        });
                 });
 
             modelBuilder.Entity("TeatroAPI.Model.Obra", b =>
@@ -77,6 +100,20 @@ namespace TeatroAPI.Data.Migrations
                     b.HasKey("ObraID");
 
                     b.ToTable("Obras");
+
+                    b.HasData(
+                        new
+                        {
+                            ObraID = 1,
+                            Director = "Pedro Calderón de la Barca",
+                            Titulo = "La vida es sueño"
+                        },
+                        new
+                        {
+                            ObraID = 2,
+                            Director = "William Shakespeare",
+                            Titulo = "Hamlet"
+                        });
                 });
 
             modelBuilder.Entity("TeatroAPI.Model.Reserva", b =>
@@ -103,6 +140,29 @@ namespace TeatroAPI.Data.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("Reservas");
+
+                    b.HasData(
+                        new
+                        {
+                            ReservaID = 1,
+                            FechaReserva = new DateTime(2024, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FuncionID = 1,
+                            UserID = 1
+                        },
+                        new
+                        {
+                            ReservaID = 2,
+                            FechaReserva = new DateTime(2024, 2, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FuncionID = 2,
+                            UserID = 2
+                        },
+                        new
+                        {
+                            ReservaID = 3,
+                            FechaReserva = new DateTime(2024, 2, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FuncionID = 3,
+                            UserID = 1
+                        });
                 });
 
             modelBuilder.Entity("TeatroAPI.Model.Sala", b =>
@@ -122,6 +182,20 @@ namespace TeatroAPI.Data.Migrations
                     b.HasKey("SalaID");
 
                     b.ToTable("Salas");
+
+                    b.HasData(
+                        new
+                        {
+                            SalaID = 1,
+                            Capacidad = 100,
+                            Nombre = "Sala Principal"
+                        },
+                        new
+                        {
+                            SalaID = 2,
+                            Capacidad = 50,
+                            Nombre = "Sala Secundaria"
+                        });
                 });
 
             modelBuilder.Entity("TeatroAPI.Model.Sesion", b =>
@@ -189,6 +263,22 @@ namespace TeatroAPI.Data.Migrations
                     b.HasKey("UserID");
 
                     b.ToTable("Usuarios");
+
+                    b.HasData(
+                        new
+                        {
+                            UserID = 1,
+                            Email = "juanperez@mail.com",
+                            Nombre = "Juan Pérez",
+                            Rol = 0
+                        },
+                        new
+                        {
+                            UserID = 2,
+                            Email = "analopez@mail.com",
+                            Nombre = "Ana López",
+                            Rol = 0
+                        });
                 });
 
             modelBuilder.Entity("TeatroAPI.Model.Funcion", b =>
