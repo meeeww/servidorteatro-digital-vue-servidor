@@ -9,7 +9,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Configuration;
-using TeatroAPI.Utils;
 
 namespace TeatroAPI.Controllers
 {
@@ -93,9 +92,10 @@ namespace TeatroAPI.Controllers
                 var usuario = _usuarioService.GetUsuarioContraByEmail(credenciales.Email);
 
                 if (usuario == null)
-                {
                     return NotFound("Usuario no encontrado.");
-                }
+
+                if(credenciales.Contra != usuario.Contra)
+                    return Unauthorized("Credenciales incorrectas.");
 
                 //hashear sha-256
                 //if (!(BCrypt.Net.BCrypt.Verify(credenciales.Contra, usuario.Contra)))
@@ -166,7 +166,7 @@ namespace TeatroAPI.Controllers
                     Apellido = credenciales.Apellido,
                     Email = credenciales.Email,
                     Telefono = credenciales.Telefono,
-                    Contra = Hashing.ToSHA256(credenciales.Contra),
+                    Contra = credenciales.Contra,
                     Rol = 0,
                 };
 

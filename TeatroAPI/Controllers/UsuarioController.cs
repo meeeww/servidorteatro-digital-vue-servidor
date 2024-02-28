@@ -133,7 +133,7 @@ namespace TeatroAPI.Controllers
                     Apellido = usuarioDto.Apellido,
                     Email = usuarioDto.Email,
                     Telefono = usuarioDto.Telefono,
-                    Contra = Hashing.ToSHA256(usuarioDto.Contra),
+                    Contra = usuarioDto.Contra,
                     Rol = usuarioDto.Rol,
                 };
 

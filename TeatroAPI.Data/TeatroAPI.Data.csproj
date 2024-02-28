@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TeatroAPI.Model\TeatroAPI.Model.csproj" />
+	  <ProjectReference Include="..\TeatroAPI.Model\TeatroAPI.Model.csproj" />
   </ItemGroup>
 
 </Project>

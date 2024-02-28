@@ -116,8 +116,6 @@ namespace TeatroAPI.Data
 
         public void InsertUsuario(Usuario usuario)
         {
-            usuario.Contra = BCrypt.Net.BCrypt.HashPassword(usuario.Contra);
-
             _context.Usuarios.Add(usuario);
             SaveChanges();
         }
