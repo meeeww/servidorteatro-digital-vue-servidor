@@ -75,6 +75,7 @@ namespace TeatroAPI.Data
                     UserID = u.UserID,
                     Email = u.Email,
                     Contra = u.Contra,
+                    Rol = u.Rol,
                 }).FirstOrDefault();
 
             return usuario;

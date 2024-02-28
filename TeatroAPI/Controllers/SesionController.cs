@@ -97,12 +97,6 @@ namespace TeatroAPI.Controllers
                 if(credenciales.Contra != usuario.Contra)
                     return Unauthorized("Credenciales incorrectas.");
 
-                //hashear sha-256
-                //if (!(BCrypt.Net.BCrypt.Verify(credenciales.Contra, usuario.Contra)))
-                //{
-                //    return Unauthorized("La contraseña es incorrecta.");
-                //}
-
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
 
