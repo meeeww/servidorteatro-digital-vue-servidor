@@ -124,7 +124,7 @@ namespace TeatroAPI.Data
 
         public void UpdateUsuario(Usuario usuario)
         {
-            var existingUsuario = _context.Usuarios.FirstOrDefault(u => u.UserID == usuario.UserID);
+            var existingUsuario = _context.Usuarios.FirstOrDefault(u => u.Email == usuario.Email);
             if (existingUsuario != null)
             {
                 existingUsuario.Nombre = usuario.Nombre;

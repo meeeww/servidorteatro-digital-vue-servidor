@@ -20,6 +20,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarios()
         {
             try

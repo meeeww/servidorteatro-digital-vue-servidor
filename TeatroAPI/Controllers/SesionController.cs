@@ -50,8 +50,16 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpGet("id/{id}")]
+        [Authorize]
         public IActionResult GetSesionesPorId(int id)
         {
+            var userIdClaim = User.FindFirst(ClaimTypes.SerialNumber)?.Value;
+
+            if (userIdClaim == null || id.ToString() != userIdClaim)
+            {
+                return Forbid(); // El usuario no tiene permitido acceder a este recurso
+            }
+
             try
             {
                 var sesion = _sesionService.GetSesionesPorId(id);
