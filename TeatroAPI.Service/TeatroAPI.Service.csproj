@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TeatroAPI.Data\TeatroAPI.Data.csproj" />
+    <ProjectReference Include="..\TeatroAPI.Model\TeatroAPI.Model.csproj" />
+  </ItemGroup>
+
+</Project>
