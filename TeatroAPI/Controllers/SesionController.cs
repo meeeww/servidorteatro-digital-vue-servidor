@@ -84,9 +84,6 @@ namespace TeatroAPI.Controllers
                 if (credenciales == null)
                     return BadRequest("El usuario no puede ser nulo.");
 
-                //if (contra != null)
-                //    return Conflict("La contraseña es incorrecta.");
-
                 //verify user con throw en service
 
                 var usuario = _usuarioService.GetUsuarioContraByEmail(credenciales.Email);
@@ -107,10 +104,12 @@ namespace TeatroAPI.Controllers
                     new Claim(ClaimTypes.Role, usuario.Rol.ToString())
                 };
 
+                var fechaExpiracion = DateTime.UtcNow.AddHours(2);
+
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(claims),
-                    Expires = DateTime.UtcNow.AddHours(2),
+                    Expires = fechaExpiracion,
                     Issuer = _configuration["Jwt:Issuer"],
                     Audience = _configuration["Jwt:Audience"],
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -124,6 +123,7 @@ namespace TeatroAPI.Controllers
                     UserID = usuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
+                    FechaFin = fechaExpiracion,
                     IP = credenciales.IP,
                     Dispositivo = credenciales.Dispositivo,
                 };
@@ -175,10 +175,12 @@ namespace TeatroAPI.Controllers
                     new Claim(ClaimTypes.Role, nuevoUsuario.Rol.ToString())
                 };
 
+                var fechaExpiracion = DateTime.UtcNow.AddHours(2);
+
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(claims),
-                    Expires = DateTime.UtcNow.AddHours(2),
+                    Expires = fechaExpiracion,
                     Issuer = _configuration["Jwt:Issuer"],
                     Audience = _configuration["Jwt:Audience"],
                     SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
@@ -192,6 +194,7 @@ namespace TeatroAPI.Controllers
                     UserID = nuevoUsuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
+                    FechaFin = fechaExpiracion,
                     IP = "desactivado por ahora",
                     Dispositivo = "desactivado por ahora",
                 };
