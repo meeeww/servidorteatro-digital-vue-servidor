@@ -28,8 +28,8 @@ namespace TeatroAPI.Controllers
             _configuration = configuration;
         }
 
-        [AllowAnonymous]
         [HttpGet("token/{token}")]
+        [AllowAnonymous]
         public IActionResult GetSesionPorToken(string token)
         {
             try
@@ -75,8 +75,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpPost("iniciar")]
+        [AllowAnonymous]
         public IActionResult IniciarSesion([FromBody] SesionInsertDto credenciales)
         {
             try
@@ -138,8 +138,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpPost("registrar")]
+        [AllowAnonymous]
         public IActionResult RegistrarSesion([FromBody] UsuarioInsertDto credenciales)
         {
             try
@@ -207,8 +207,16 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost("cerrar")]
+        [Authorize]
         public IActionResult CerrarSesion([FromBody] SesionInsertDto sesionDto)
         {
+            var userIdClaim = User.FindFirst(ClaimTypes.SerialNumber)?.Value;
+
+            if (userIdClaim == null || sesionDto.UserID.ToString() != userIdClaim)
+            {
+                return Forbid(); // El usuario no tiene permitido acceder a este recurso
+            }
+
             try
             {
                 _sesionService.FinalizarSesion(sesionDto.Token);

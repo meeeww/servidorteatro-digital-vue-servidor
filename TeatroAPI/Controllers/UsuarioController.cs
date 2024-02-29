@@ -33,6 +33,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioById(int id)
         {
             try
@@ -52,6 +53,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpGet("email={email}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioByEmail(string email)
         {
             try
@@ -71,6 +73,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpGet("telefono={telefono}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioByTelefono(string telefono)
         {
             try
@@ -90,6 +93,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpGet("rol={rol}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioByRol(int rol)
         {
             try
@@ -109,6 +113,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertUsuario([FromBody] UsuarioInsertDto usuarioDto)
         {
             try
@@ -147,6 +152,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult UpdateUsuario([FromBody] UsuarioUpdateDto usuarioDto)
         {
             try
@@ -183,6 +189,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult DeleteUsuario(int id)
         {
             try

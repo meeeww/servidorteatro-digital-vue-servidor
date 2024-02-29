@@ -18,8 +18,8 @@ namespace TeatroAPI.Controllers
             _funcionService = funcionService;
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetFunciones()
         {
             try
@@ -32,8 +32,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult GetFuncionById(int id)
         {
             try
@@ -53,6 +53,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertFuncion([FromBody] FuncionInsertDto funcionDto)
         {
             try
@@ -80,6 +81,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult UpdateFuncion([FromBody] FuncionUpdateDto funcionDto)
         {
             try
@@ -114,6 +116,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult DeleteFuncion(int id)
         {
             try

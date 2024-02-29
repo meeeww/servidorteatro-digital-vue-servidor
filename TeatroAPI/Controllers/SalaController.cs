@@ -18,8 +18,8 @@ namespace TeatroAPI.Controllers
             _salaService = salaService;
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetSalas()
         {
             try
@@ -32,8 +32,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult GetSalaById(int id)
         {
             try
@@ -52,8 +52,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("name={name}")]
+        [AllowAnonymous]
         public IActionResult GetSalaByName(string name)
         {
             try
@@ -73,6 +73,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertSala([FromBody] SalaInsertDto salaDto)
         {
             try
@@ -98,6 +99,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult UpdateSala([FromBody] SalaUpdateDto salaDto)
         {
             try
@@ -130,6 +132,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult DeleteSala(int id)
         {
             try

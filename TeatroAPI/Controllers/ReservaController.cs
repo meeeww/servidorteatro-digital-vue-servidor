@@ -3,6 +3,7 @@ using TeatroAPI.Model;
 using TeatroAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace TeatroAPI.Controllers
 {
@@ -18,8 +19,8 @@ namespace TeatroAPI.Controllers
             _reservaService = reservaService;
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetReservas()
         {
             try
@@ -32,17 +33,26 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}")]
+        [Authorize]
         public IActionResult GetReservaById(int id)
         {
             try
             {
+                var userId = HttpContext.User.FindFirst(ClaimTypes.SerialNumber)?.Value;
+                var userRol = HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
+
                 var reserva = _reservaService.GetReservaById(id);
                 if (reserva == null)
                 {
                     return NotFound();
                 }
+
+                if (reserva.UserID.ToString() != userId || int.Parse(userRol) == 0)
+                {
+                    return Forbid();
+                }
+
                 return Ok(reserva);
 
             }
@@ -52,8 +62,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("funcion={funcion}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetReservasByFuncion(int funcion)
         {
             try
@@ -72,8 +82,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("cliente={cliente}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult GetReservasByCliente(int cliente)
         {
             try
@@ -93,6 +103,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertReserva([FromBody] ReservaInsertDto reservaDto)
         {
             try
@@ -119,6 +130,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult UpdateReserva([FromBody] ReservaUpdateDto reservaDto)
         {
             try
@@ -152,6 +164,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult DeleteReserva(int id)
         {
             try

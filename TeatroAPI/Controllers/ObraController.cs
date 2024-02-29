@@ -18,8 +18,8 @@ namespace TeatroAPI.Controllers
             _obraService = obraService;
         }
 
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult GetObras()
         {
             try
@@ -32,8 +32,8 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [AllowAnonymous]
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public IActionResult GetObraById(int id)
         {
             try
@@ -53,6 +53,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertObra([FromBody] ObraInsertDto obraDto)
         {
             try
@@ -82,6 +83,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPut]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult UpdateObra([FromBody] ObraUpdateDto obraDto)
         {
             try
@@ -117,6 +119,7 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Policy = "EsAdmin")]
         public IActionResult DeleteObra(int id)
         {
             try
