@@ -82,6 +82,9 @@ namespace TeatroAPI.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ObraID"));
 
+                    b.Property<int>("CategoriaID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Descripcion")
                         .HasColumnType("nvarchar(max)");
 
@@ -105,12 +108,14 @@ namespace TeatroAPI.Data.Migrations
                         new
                         {
                             ObraID = 1,
+                            CategoriaID = 0,
                             Director = "Pedro Calderón de la Barca",
                             Titulo = "La vida es sueño"
                         },
                         new
                         {
                             ObraID = 2,
+                            CategoriaID = 1,
                             Director = "William Shakespeare",
                             Titulo = "Hamlet"
                         });

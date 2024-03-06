@@ -52,6 +52,21 @@ namespace TeatroAPI.Controllers
             }
         }
 
+        [HttpGet("categoria={categoriaId}")]
+        [AllowAnonymous]
+        public IActionResult GetObraCategoriaById(int categoriaId)
+        {
+            try
+            {
+                return Ok(_obraService.GetObraCategoriaById(categoriaId));
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Ocurrió un error al obtener la obra.", error = ex.ToString() });
+            }
+        }
+
         [HttpPost]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertObra([FromBody] ObraInsertDto obraDto)
