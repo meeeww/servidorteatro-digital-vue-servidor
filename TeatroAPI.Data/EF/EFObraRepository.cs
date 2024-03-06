@@ -26,6 +26,7 @@ namespace TeatroAPI.Data
                 FechaInicio = o.FechaInicio,
                 FechaFin = o.FechaFin,
                 Director = o.Director,
+                CategoriaID = o.CategoriaID
             }).ToList();
 
             return obrasDto;
@@ -43,9 +44,30 @@ namespace TeatroAPI.Data
                     FechaInicio = o.FechaInicio,
                     FechaFin = o.FechaFin,
                     Director = o.Director,
+                    CategoriaID = o.CategoriaID
                 }).FirstOrDefault();
 
             return obra;
+        }
+
+        public List<ObraSimpleDto> GetObraCategoriaById(int categoriaId)
+        {
+            var obras = _context.Obras
+                .Where(o => o.CategoriaID == categoriaId)
+                .ToList();
+
+            var obrasDto = obras.Select(o => new ObraSimpleDto
+            {
+                ObraID = o.ObraID,
+                Titulo = o.Titulo,
+                Descripcion = o.Descripcion,
+                FechaInicio = o.FechaInicio,
+                FechaFin = o.FechaFin,
+                Director = o.Director,
+                CategoriaID = o.CategoriaID
+            }).ToList();
+
+            return obrasDto;
         }
 
         public void InsertObra(Obra obra)
@@ -64,6 +86,7 @@ namespace TeatroAPI.Data
                 existingObra.FechaInicio = obra.FechaInicio;
                 existingObra.FechaFin = obra.FechaFin;
                 existingObra.Director = obra.Director;
+                existingObra.CategoriaID = obra.CategoriaID;
 
                 _context.SaveChanges();
             }

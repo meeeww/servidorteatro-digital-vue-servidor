@@ -21,6 +21,7 @@ namespace TeatroAPI.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Titulo = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Descripcion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CategoriaID = table.Column<int>(type: "int", nullable: false),
                     FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: true),
                     FechaFin = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Director = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -141,11 +142,11 @@ namespace TeatroAPI.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Obras",
-                columns: new[] { "ObraID", "Descripcion", "Director", "FechaFin", "FechaInicio", "Titulo" },
+                columns: new[] { "ObraID", "CategoriaID", "Descripcion", "Director", "FechaFin", "FechaInicio", "Titulo" },
                 values: new object[,]
                 {
-                    { 1, null, "Pedro Calderón de la Barca", null, null, "La vida es sueño" },
-                    { 2, null, "William Shakespeare", null, null, "Hamlet" }
+                    { 1, 0, null, "Pedro Calderón de la Barca", null, null, "La vida es sueño" },
+                    { 2, 1, null, "William Shakespeare", null, null, "Hamlet" }
                 });
 
             migrationBuilder.InsertData(

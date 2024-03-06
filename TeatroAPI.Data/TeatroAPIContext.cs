@@ -77,8 +77,8 @@ public class TeatroAPIContext : DbContext
         );
 
         modelBuilder.Entity<Obra>().HasData(
-            new Obra { ObraID = 1, Titulo = "La vida es sueño", Director = "Pedro Calderón de la Barca" },
-            new Obra { ObraID = 2, Titulo = "Hamlet", Director = "William Shakespeare" }
+            new Obra { ObraID = 1, Titulo = "La vida es sueño", Director = "Pedro Calderón de la Barca", CategoriaID = 0 },
+            new Obra { ObraID = 2, Titulo = "Hamlet", Director = "William Shakespeare", CategoriaID = 1 }
         );
 
         modelBuilder.Entity<Sala>().HasData(
