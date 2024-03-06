@@ -161,7 +161,7 @@ namespace TeatroAPI.Controllers
                     Email = credenciales.Email,
                     Telefono = credenciales.Telefono,
                     Contra = credenciales.Contra,
-                    Rol = 0,
+                    Rol = credenciales.Rol,
                 };
 
                 var nuevoUsuario = _usuarioService.InsertUsuario(usuarioInsert);
@@ -172,7 +172,7 @@ namespace TeatroAPI.Controllers
                 {
                     new Claim(ClaimTypes.SerialNumber, nuevoUsuario.UserID.ToString()),
                     new Claim(ClaimTypes.Email, nuevoUsuario.Email),
-                    new Claim(ClaimTypes.Role, nuevoUsuario.Rol.ToString())
+                    new Claim(ClaimTypes.Role, credenciales.Rol.ToString())
                 };
 
                 var fechaExpiracion = DateTime.UtcNow.AddHours(2);

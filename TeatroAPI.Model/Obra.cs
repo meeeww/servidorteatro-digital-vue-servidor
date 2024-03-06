@@ -8,6 +8,7 @@ namespace TeatroAPI.Model
         public int ObraID { get; set; }
         public string? Titulo{ get; set; }
         public string? Descripcion { get; set; }
+        public int CategoriaID { get; set; }
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
         public string? Director { get; set; }

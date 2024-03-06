@@ -23,6 +23,11 @@ namespace TeatroAPI.Services
             return _obraRepository.GetObraById(id);
         }
 
+        public List<ObraSimpleDto> GetObraCategoriaById(int id)
+        {
+            return _obraRepository.GetObraCategoriaById(id);
+        }
+
         public Obra InsertObra(Obra obra)
         {
             _obraRepository.InsertObra(obra);
