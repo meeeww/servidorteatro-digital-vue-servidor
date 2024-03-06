@@ -40,6 +40,7 @@ public class TeatroAPIContext : DbContext
             .HasMany(u => u.Sesiones)
             .WithOne(s => s.Usuario)
             .HasForeignKey(s => s.UserID);
+
         modelBuilder.Entity<Usuario>()
             .HasMany(u => u.Reservas)
             .WithOne(r => r.Usuario)
