@@ -27,6 +27,15 @@ builder.Services.AddJwtAuthentication(builder.Configuration);
 
 builder.Services.AddApplicationServices();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "PoliticaCORS",
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:5173/");
+                      });
+});
+
 var app = builder.Build();
 
 app.UseSwagger();
