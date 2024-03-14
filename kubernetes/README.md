@@ -76,6 +76,7 @@ dotnet ef database update  -p ./TeatroAPI.Data/TeatroAPI.Data.csproj -s ./Teatro
 
 # Subir repo a ECR (Elastic Container Registry)
 https://us-east-1.console.aws.amazon.com/ecr/private-registry/repositories?region=us-east-1
+
 # Añadir los contenedores a kubernetes
 kubectl apply -f kubernetes/api-deployment.yaml
 kubectl apply -f kubernetes/api-svc.yaml
