@@ -34,15 +34,18 @@ jobs:
       - name: Update kube config
         run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
 
-      - name: Check the modified api-deployment.yaml
-        run: cat kubernetes/api-deployment.yaml
-
       - name: Deploy to EKS
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 767397877347.dkr.ecr.us-east-1.amazonaws.com
           docker build -t teatroapi:${{ steps.commit.outputs.short }} .
           docker tag teatroapi:${{ steps.commit.outputs.short }} 767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}
           docker push 767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}
-          sed -i "s|767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi:latest|767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}|" kubernetes/api-deployment.yaml
+          sed -i "s|767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi|767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}|" kubernetes/api-deployment.yaml
           kubectl apply -f kubernetes/api-deployment.yaml
           kubectl apply -f kubernetes/api-svc.yaml
+
+      - name: Echo commit SHA
+        run: echo ${{ steps.commit.outputs.short }}
+
+      - name: Check the modified api-deployment.yaml
+        run: cat kubernetes/api-deployment.yaml
