@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: teatroapi-deplo
+  labels:
+    env: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: app
+  template:
+    metadata:
+      labels:
+        env: app
+    spec:
+      containers:
+        - name: teatroapi
+          image: 767397877347.dkr.ecr.us-east-1.amazonaws.com/teatroapi
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: teatroapi-config
