@@ -4,5 +4,6 @@ obj
 appLogs.txt
 datos_mysql
 datos_sqlserver
-.env
 Migrations
+.env
+.envAWS
