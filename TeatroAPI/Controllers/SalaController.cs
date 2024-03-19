@@ -52,7 +52,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("name={name}")]
+        [HttpGet("name/{name}")]
         [AllowAnonymous]
         public IActionResult GetSalaByName(string name)
         {
@@ -78,9 +78,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (salaDto == null)
-                    return BadRequest("La sala no puede ser nula.");
-
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var sala = new Sala
                 {
@@ -104,9 +103,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (salaDto == null)
-                    return BadRequest("La sala no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 

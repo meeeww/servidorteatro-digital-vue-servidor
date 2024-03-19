@@ -52,7 +52,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("categoria={categoriaId}")]
+        [HttpGet("categoria/{categoriaId}")]
         [AllowAnonymous]
         public IActionResult GetObraCategoriaById(int categoriaId)
         {
@@ -73,9 +73,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (obraDto == null)
-                    return BadRequest("La obra no puede ser nula.");
-
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var obra = new Obra
                 {
@@ -103,9 +102,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (obraDto == null)
-                    return BadRequest("La obra no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
