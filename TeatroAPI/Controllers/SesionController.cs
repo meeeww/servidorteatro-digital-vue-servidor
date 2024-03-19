@@ -123,9 +123,7 @@ namespace TeatroAPI.Controllers
                     UserID = usuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
-                    FechaFin = fechaExpiracion,
-                    IP = credenciales.IP,
-                    Dispositivo = credenciales.Dispositivo,
+                    FechaFin = fechaExpiracion
                 };
 
                 _sesionService.CrearSesion(sesion);
@@ -194,9 +192,7 @@ namespace TeatroAPI.Controllers
                     UserID = nuevoUsuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
-                    FechaFin = fechaExpiracion,
-                    IP = "desactivado por ahora",
-                    Dispositivo = "desactivado por ahora",
+                    FechaFin = fechaExpiracion
                 };
 
                 _sesionService.CrearSesion(sesion);
