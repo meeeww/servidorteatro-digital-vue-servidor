@@ -43,6 +43,18 @@ namespace TeatroAPI.Data
                 })
                 .ToList();
 
+            var funcionesList = _context.Funciones
+                .Where(funcion => funcion.ObraID == id)
+                .Select(f => new FuncionSimpleDto
+                {
+                    FuncionID = f.FuncionID,
+                    ObraID = f.ObraID,
+                    SalaID = f.SalaID,
+                    FechaHora = f.FechaHora,
+                    Precio = f.Precio,
+                })
+                .ToList();
+
             var obra = _context.Obras
                 .Where(obra => obra.ObraID == id)
                 .Select(o => new ObraReservaDto
