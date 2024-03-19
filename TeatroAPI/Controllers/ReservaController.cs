@@ -113,8 +113,8 @@ namespace TeatroAPI.Controllers
 
                 var reservaExistente = _reservaService.GetReservaByFuncionAsiento(reservaDto.FuncionID, reservaDto.Asiento);
 
-                if (reservaExistente == null)
-                    return NotFound("Reserva no encontrada.");
+                if (reservaExistente != null)
+                    return Conflict("La reserva ya existe.");
 
                 var reserva = new Reserva
                 {
