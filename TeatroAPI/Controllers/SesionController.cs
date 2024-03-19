@@ -56,7 +56,7 @@ namespace TeatroAPI.Controllers
 
             if (userIdClaim == null || id.ToString() != userIdClaim)
             {
-                return Forbid(); // El usuario no tiene permitido acceder a este recurso
+                return Forbid();
             }
 
             try
@@ -81,8 +81,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (credenciales == null)
-                    return BadRequest("El usuario no puede ser nulo.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 //verify user con throw en service
 
@@ -144,8 +144,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (credenciales == null)
-                    return BadRequest("El usuario no puede ser nulo.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var usuarioExistente = _usuarioService.GetUsuarioContraByEmail(credenciales.Email);
 
@@ -217,7 +217,7 @@ namespace TeatroAPI.Controllers
 
             if (userIdClaim == null || sesionDto.UserID.ToString() != userIdClaim)
             {
-                return Forbid(); // El usuario no tiene permitido acceder a este recurso
+                return Forbid();
             }
 
             try

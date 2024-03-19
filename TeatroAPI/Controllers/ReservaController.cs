@@ -62,7 +62,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("funcion={funcion}")]
+        [HttpGet("funcion/{funcion}")]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult GetReservasByFuncion(int funcion)
         {
@@ -82,7 +82,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("cliente={cliente}")]
+        [HttpGet("cliente/{cliente}")]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult GetReservasByCliente(int cliente)
         {
@@ -108,8 +108,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (reservaDto == null)
-                    return BadRequest("La reserva no puede ser nula.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var reservaExistente = _reservaService.GetReservaByFuncionAsiento(reservaDto.FuncionID, reservaDto.Asiento);
 
@@ -140,9 +140,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (reservaDto == null)
-                    return BadRequest("La reserva no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
