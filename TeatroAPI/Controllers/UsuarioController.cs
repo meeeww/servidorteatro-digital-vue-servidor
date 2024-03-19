@@ -32,13 +32,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idUsuario}")]
         [Authorize(Policy = "EsAdmin")]
-        public IActionResult GetUsuarioById(int id)
+        public IActionResult GetUsuarioById(int idUsuario)
         {
             try
             {
-                var usuario = _usuarioService.GetUsuarioById(id);
+                var usuario = _usuarioService.GetUsuarioById(idUsuario);
                 if (usuario == null)
                 {
                     return NotFound();

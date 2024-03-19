@@ -48,20 +48,20 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{idSesion}")]
         [Authorize]
-        public IActionResult GetSesionesPorId(int id)
+        public IActionResult GetSesionesPorId(int idSesion)
         {
             var userIdClaim = User.FindFirst(ClaimTypes.SerialNumber)?.Value;
 
-            if (userIdClaim == null || id.ToString() != userIdClaim)
+            if (userIdClaim == null || idSesion.ToString() != userIdClaim)
             {
                 return Forbid();
             }
 
             try
             {
-                var sesion = _sesionService.GetSesionesPorId(id);
+                var sesion = _sesionService.GetSesionesPorId(idSesion);
                 if (sesion == null)
                 {
                     return NotFound();

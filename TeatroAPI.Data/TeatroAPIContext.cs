@@ -71,11 +71,6 @@ public class TeatroAPIContext : DbContext
             .WithMany(f => f.Reservas)
             .HasForeignKey(r => r.FuncionID);
 
-        modelBuilder.Entity<Usuario>().HasData(
-            new Usuario { UserID = 1, Nombre = "Juan Pérez", Email = "juanperez@mail.com" },
-            new Usuario { UserID = 2, Nombre = "Ana López", Email = "analopez@mail.com" }
-        );
-
         modelBuilder.Entity<Obra>().HasData(
             new Obra { ObraID = 1, Titulo = "La vida es sueño", Director = "Pedro Calderón de la Barca", CategoriaID = 0 },
             new Obra { ObraID = 2, Titulo = "Hamlet", Director = "William Shakespeare", CategoriaID = 1 }

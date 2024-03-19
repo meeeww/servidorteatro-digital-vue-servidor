@@ -32,13 +32,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idFuncion}")]
         [AllowAnonymous]
-        public IActionResult GetFuncionById(int id)
+        public IActionResult GetFuncionById(int idFuncion)
         {
             try
             {
-                var funcion = _funcionService.GetFuncionById(id);
+                var funcion = _funcionService.GetFuncionById(idFuncion);
                 if (funcion == null)
                 {
                     return NotFound();
