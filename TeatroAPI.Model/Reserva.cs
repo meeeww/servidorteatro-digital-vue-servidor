@@ -12,8 +12,6 @@ namespace TeatroAPI.Model
         public int UserID { get; set; }
         [Required]
         public int Asiento {  get; set; }
-        [Required]
-        public DateTime FechaReserva { get; set; }
         public Funcion? Funcion { get; set; }
         public Usuario? Usuario { get; set; }
     }

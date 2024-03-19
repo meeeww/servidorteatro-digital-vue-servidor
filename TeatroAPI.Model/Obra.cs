@@ -13,13 +13,7 @@ namespace TeatroAPI.Model
         [Required]
         public int CategoriaID { get; set; }
         [Required]
-        public DateTime? FechaInicio { get; set; }
-        [Required]
-        public DateTime? FechaFin { get; set; }
-        [Required]
         public string? Imagen {  get; set; }
-        [Required]
-        public string? Director { get; set; }
         public virtual ICollection<Funcion> Funciones { get; set; } = new List<Funcion>();
     }
 }

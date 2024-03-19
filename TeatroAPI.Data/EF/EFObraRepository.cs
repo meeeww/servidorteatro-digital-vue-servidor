@@ -23,9 +23,7 @@ namespace TeatroAPI.Data
                 ObraID = o.ObraID,
                 Titulo = o.Titulo,
                 Descripcion = o.Descripcion,
-                FechaInicio = o.FechaInicio,
-                FechaFin = o.FechaFin,
-                Director = o.Director,
+                Imagen = o.Imagen,
                 CategoriaID = o.CategoriaID
             }).ToList();
 
@@ -41,8 +39,7 @@ namespace TeatroAPI.Data
                     ReservaID = r.ReservaID,
                     FuncionID = r.FuncionID,
                     UserID = r.UserID,
-                    Asiento = r.Asiento,
-                    FechaReserva = r.FechaReserva
+                    Asiento = r.Asiento
                 })
                 .ToList();
 
@@ -53,9 +50,7 @@ namespace TeatroAPI.Data
                     ObraID = o.ObraID,
                     Titulo = o.Titulo,
                     Descripcion = o.Descripcion,
-                    FechaInicio = o.FechaInicio,
-                    FechaFin = o.FechaFin,
-                    Director = o.Director,
+                    Imagen = o.Imagen,
                     CategoriaID = o.CategoriaID,
                     Reservas = reservasList
                 }).FirstOrDefault();
@@ -74,9 +69,7 @@ namespace TeatroAPI.Data
                 ObraID = o.ObraID,
                 Titulo = o.Titulo,
                 Descripcion = o.Descripcion,
-                FechaInicio = o.FechaInicio,
-                FechaFin = o.FechaFin,
-                Director = o.Director,
+                Imagen = o.Imagen,
                 
                 CategoriaID = o.CategoriaID
             }).ToList();
@@ -97,9 +90,7 @@ namespace TeatroAPI.Data
             {
                 existingObra.Titulo = obra.Titulo;
                 existingObra.Descripcion = obra.Descripcion;
-                existingObra.FechaInicio = obra.FechaInicio;
-                existingObra.FechaFin = obra.FechaFin;
-                existingObra.Director = obra.Director;
+                existingObra.Imagen = obra.Imagen;
                 existingObra.CategoriaID = obra.CategoriaID;
 
                 _context.SaveChanges();

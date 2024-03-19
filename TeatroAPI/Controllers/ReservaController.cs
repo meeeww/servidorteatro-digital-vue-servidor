@@ -120,8 +120,7 @@ namespace TeatroAPI.Controllers
                 {
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
-                    Asiento = reservaDto.Asiento,
-                    FechaReserva = reservaDto.FechaReserva,
+                    Asiento = reservaDto.Asiento
                 };
 
                 _reservaService.InsertReserva(reserva);
@@ -152,8 +151,7 @@ namespace TeatroAPI.Controllers
                 {
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
-                    Asiento = reservaDto.Asiento,
-                    FechaReserva = reservaDto.FechaReserva,
+                    Asiento = reservaDto.Asiento
                 };
 
                 _reservaService.UpdateReserva(reserva);
