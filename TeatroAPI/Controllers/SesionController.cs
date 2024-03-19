@@ -48,20 +48,20 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("id/{id}")]
+        [HttpGet("id/{idSesion}")]
         [Authorize]
-        public IActionResult GetSesionesPorId(int id)
+        public IActionResult GetSesionesPorId(int idSesion)
         {
             var userIdClaim = User.FindFirst(ClaimTypes.SerialNumber)?.Value;
 
-            if (userIdClaim == null || id.ToString() != userIdClaim)
+            if (userIdClaim == null || idSesion.ToString() != userIdClaim)
             {
                 return Forbid();
             }
 
             try
             {
-                var sesion = _sesionService.GetSesionesPorId(id);
+                var sesion = _sesionService.GetSesionesPorId(idSesion);
                 if (sesion == null)
                 {
                     return NotFound();
@@ -123,9 +123,7 @@ namespace TeatroAPI.Controllers
                     UserID = usuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
-                    FechaFin = fechaExpiracion,
-                    IP = credenciales.IP,
-                    Dispositivo = credenciales.Dispositivo,
+                    FechaFin = fechaExpiracion
                 };
 
                 _sesionService.CrearSesion(sesion);
@@ -194,9 +192,7 @@ namespace TeatroAPI.Controllers
                     UserID = nuevoUsuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
-                    FechaFin = fechaExpiracion,
-                    IP = "desactivado por ahora",
-                    Dispositivo = "desactivado por ahora",
+                    FechaFin = fechaExpiracion
                 };
 
                 _sesionService.CrearSesion(sesion);

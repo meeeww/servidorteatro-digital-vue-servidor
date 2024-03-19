@@ -23,8 +23,7 @@ namespace TeatroAPI.Data
                 ReservaID = r.ReservaID,
                 FuncionID = r.FuncionID,
                 UserID = r.UserID,
-                Asiento = r.Asiento,
-                FechaReserva = r.FechaReserva,
+                Asiento = r.Asiento
             }).ToList();
 
             return reservasDto;
@@ -39,8 +38,7 @@ namespace TeatroAPI.Data
                     ReservaID = r.ReservaID,
                     FuncionID = r.FuncionID,
                     UserID = r.UserID,
-                    Asiento = r.Asiento,
-                    FechaReserva = r.FechaReserva,
+                    Asiento = r.Asiento
                 }).FirstOrDefault();
 
             return reserva;
@@ -56,8 +54,7 @@ namespace TeatroAPI.Data
                     ReservaID = r.ReservaID,
                     FuncionID = r.FuncionID,
                     UserID = r.UserID,
-                    Asiento = r.Asiento,
-                    FechaReserva = r.FechaReserva,
+                    Asiento = r.Asiento
                 }).FirstOrDefault();
 
             return reserva;
@@ -74,8 +71,7 @@ namespace TeatroAPI.Data
                 ReservaID = r.ReservaID,
                 FuncionID = r.FuncionID,
                 UserID = r.UserID,
-                Asiento = r.Asiento,
-                FechaReserva = r.FechaReserva,
+                Asiento = r.Asiento
             }).ToList();
 
             return reservasDto;
@@ -92,8 +88,7 @@ namespace TeatroAPI.Data
                 ReservaID = r.ReservaID,
                 FuncionID = r.FuncionID,
                 UserID = r.UserID,
-                Asiento = r.Asiento,
-                FechaReserva = r.FechaReserva,
+                Asiento = r.Asiento
             }).ToList();
 
             return reservasDto;
@@ -112,7 +107,6 @@ namespace TeatroAPI.Data
             {
                 existingReserva.FuncionID = reserva.FuncionID;
                 existingReserva.UserID = reserva.UserID;
-                existingReserva.FechaReserva = reserva.FechaReserva;
 
                 _context.SaveChanges();
             }

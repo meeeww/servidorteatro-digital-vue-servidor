@@ -22,9 +22,7 @@ namespace TeatroAPI.Data
                     UserID = s.UserID,
                     Token = s.Token,
                     FechaInicio = s.FechaInicio,
-                    FechaFin = s.FechaFin,
-                    IP = s.IP,
-                    Dispositivo = s.Dispositivo
+                    FechaFin = s.FechaFin
                 }).FirstOrDefault();
 
             return sesion;
@@ -40,9 +38,7 @@ namespace TeatroAPI.Data
                     UserID = s.UserID,
                     Token = s.Token,
                     FechaInicio = s.FechaInicio,
-                    FechaFin = s.FechaFin,
-                    IP = s.IP,
-                    Dispositivo = s.Dispositivo
+                    FechaFin = s.FechaFin
                 }).ToList();
 
             return sesion;

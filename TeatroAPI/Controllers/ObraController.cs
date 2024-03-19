@@ -32,13 +32,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idObra}")]
         [AllowAnonymous]
-        public IActionResult GetObraById(int id)
+        public IActionResult GetObraById(int idObra)
         {
             try
             {
-                var obra = _obraService.GetObraById(id);
+                var obra = _obraService.GetObraById(idObra);
                 if (obra == null)
                 {
                     return NotFound();
