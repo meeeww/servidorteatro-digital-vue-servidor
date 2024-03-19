@@ -111,11 +111,16 @@ namespace TeatroAPI.Controllers
                 if (reservaDto == null)
                     return BadRequest("La reserva no puede ser nula.");
 
+                var reservaExistente = _reservaService.GetReservaByFuncionAsiento(reservaDto.FuncionID, reservaDto.Asiento);
+
+                if (reservaExistente == null)
+                    return NotFound("Reserva no encontrada.");
 
                 var reserva = new Reserva
                 {
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
+                    Asiento = reservaDto.Asiento,
                     FechaReserva = reservaDto.FechaReserva,
                 };
 
@@ -150,6 +155,7 @@ namespace TeatroAPI.Controllers
                 {
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
+                    Asiento = reservaDto.Asiento,
                     FechaReserva = reservaDto.FechaReserva,
                 };
 
