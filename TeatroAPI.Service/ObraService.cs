@@ -18,7 +18,7 @@ namespace TeatroAPI.Services
             return _obraRepository.GetObras();
         }
 
-        public ObraSimpleDto GetObraById(int id)
+        public ObraReservaDto GetObraById(int id)
         {
             return _obraRepository.GetObraById(id);
         }
