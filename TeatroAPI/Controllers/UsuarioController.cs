@@ -52,7 +52,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("email={email}")]
+        [HttpGet("email/{email}")]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioByEmail(string email)
         {
@@ -72,7 +72,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("telefono={telefono}")]
+        [HttpGet("telefono/{telefono}")]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioByTelefono(string telefono)
         {
@@ -92,7 +92,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("rol={rol}")]
+        [HttpGet("rol/{rol}")]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult GetUsuarioByRol(int rol)
         {
@@ -118,8 +118,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (usuarioDto == null)
-                    return BadRequest("El usuario no puede ser nulo.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var emailExistente = _usuarioService.GetUsuarioByEmail(usuarioDto.Email);
                 var telefonoExistente = _usuarioService.GetUsuarioByTelefono(usuarioDto.Telefono);
@@ -157,9 +157,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (usuarioDto == null)
-                    return BadRequest("El usuario no puede ser nulo.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 

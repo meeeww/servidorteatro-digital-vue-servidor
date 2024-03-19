@@ -58,9 +58,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (funcionDto == null)
-                    return BadRequest("La funcion no puede ser nula.");
-
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var funcion = new Funcion
                 {
@@ -86,9 +85,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (funcionDto == null)
-                    return BadRequest("La funcion no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
