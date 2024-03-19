@@ -80,10 +80,7 @@ namespace TeatroAPI.Controllers
                 {
 
                     Titulo = obraDto.Titulo,
-                    Descripcion = obraDto.Descripcion,
-                    FechaInicio = obraDto.FechaInicio,
-                    FechaFin = obraDto.FechaFin,
-                    Director = obraDto.Director,
+                    Descripcion = obraDto.Descripcion
                 };
 
                 _obraService.InsertObra(obra);
@@ -114,9 +111,6 @@ namespace TeatroAPI.Controllers
                 {
                     Titulo = obraDto.Titulo,
                     Descripcion = obraDto.Descripcion,
-                    FechaInicio = obraDto.FechaInicio,
-                    FechaFin = obraDto.FechaFin,
-                    Director = obraDto.Director,
                 };
 
                 _obraService.UpdateObra(obra);
