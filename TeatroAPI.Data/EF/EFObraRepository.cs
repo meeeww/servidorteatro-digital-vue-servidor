@@ -41,6 +41,7 @@ namespace TeatroAPI.Data
                     ReservaID = r.ReservaID,
                     FuncionID = r.FuncionID,
                     UserID = r.UserID,
+                    Asiento = r.Asiento,
                     FechaReserva = r.FechaReserva
                 })
                 .ToList();

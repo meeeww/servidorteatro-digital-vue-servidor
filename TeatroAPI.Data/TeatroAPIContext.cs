@@ -93,9 +93,9 @@ public class TeatroAPIContext : DbContext
         );
 
         modelBuilder.Entity<Reserva>().HasData(
-            new Reserva { ReservaID = 1, FuncionID = 1, UserID = 1, FechaReserva = new DateTime(2024, 2, 20) },
-            new Reserva { ReservaID = 2, FuncionID = 2, UserID = 2, FechaReserva = new DateTime(2024, 2, 21) },
-            new Reserva { ReservaID = 3, FuncionID = 3, UserID = 1, FechaReserva = new DateTime(2024, 2, 22) }
+            new Reserva { ReservaID = 1, FuncionID = 1, Asiento = 1, UserID = 1, FechaReserva = new DateTime(2024, 2, 20) },
+            new Reserva { ReservaID = 2, FuncionID = 2, Asiento = 20, UserID = 2, FechaReserva = new DateTime(2024, 2, 21) },
+            new Reserva { ReservaID = 3, FuncionID = 3, Asiento = 3, UserID = 1, FechaReserva = new DateTime(2024, 2, 22) }
         );
     }
 
