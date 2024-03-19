@@ -46,6 +46,23 @@ namespace TeatroAPI.Data
             return reserva;
         }
 
+        public ReservaSimpleDto GetReservaByFuncionAsiento(int funcion, int asiento)
+        {
+            var reserva = _context.Reservas
+                .Where(reserva => reserva.FuncionID == funcion)
+                .Where(reserva => reserva.Asiento == asiento)
+                .Select(r => new ReservaSimpleDto
+                {
+                    ReservaID = r.ReservaID,
+                    FuncionID = r.FuncionID,
+                    UserID = r.UserID,
+                    Asiento = r.Asiento,
+                    FechaReserva = r.FechaReserva,
+                }).FirstOrDefault();
+
+            return reserva;
+        }
+
         public List<ReservaSimpleDto> GetReservasByFuncion(int funcion)
         {
             var reservas = _context.Reservas
