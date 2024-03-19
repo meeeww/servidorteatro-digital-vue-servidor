@@ -32,11 +32,22 @@ namespace TeatroAPI.Data
             return obrasDto;
         }
 
-        public ObraSimpleDto GetObraById(int id)
+        public ObraReservaDto GetObraById(int id)
         {
+            var reservasList = _context.Reservas
+                .Where(reserva => reserva.Funcion!.ObraID == id)
+                .Select(r => new ReservaSimpleDto
+                {
+                    ReservaID = r.ReservaID,
+                    FuncionID = r.FuncionID,
+                    UserID = r.UserID,
+                    FechaReserva = r.FechaReserva
+                })
+                .ToList();
+
             var obra = _context.Obras
                 .Where(obra => obra.ObraID == id)
-                .Select(o => new ObraSimpleDto
+                .Select(o => new ObraReservaDto
                 {
                     ObraID = o.ObraID,
                     Titulo = o.Titulo,
@@ -44,7 +55,8 @@ namespace TeatroAPI.Data
                     FechaInicio = o.FechaInicio,
                     FechaFin = o.FechaFin,
                     Director = o.Director,
-                    CategoriaID = o.CategoriaID
+                    CategoriaID = o.CategoriaID,
+                    Reservas = reservasList
                 }).FirstOrDefault();
 
             return obra;
@@ -64,6 +76,7 @@ namespace TeatroAPI.Data
                 FechaInicio = o.FechaInicio,
                 FechaFin = o.FechaFin,
                 Director = o.Director,
+                
                 CategoriaID = o.CategoriaID
             }).ToList();
 
