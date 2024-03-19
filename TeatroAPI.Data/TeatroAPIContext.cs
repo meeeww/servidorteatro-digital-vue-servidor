@@ -71,14 +71,9 @@ public class TeatroAPIContext : DbContext
             .WithMany(f => f.Reservas)
             .HasForeignKey(r => r.FuncionID);
 
-        modelBuilder.Entity<Usuario>().HasData(
-            new Usuario { UserID = 1, Nombre = "Juan Pérez", Email = "juanperez@mail.com" },
-            new Usuario { UserID = 2, Nombre = "Ana López", Email = "analopez@mail.com" }
-        );
-
         modelBuilder.Entity<Obra>().HasData(
-            new Obra { ObraID = 1, Titulo = "La vida es sueño", Director = "Pedro Calderón de la Barca", CategoriaID = 0 },
-            new Obra { ObraID = 2, Titulo = "Hamlet", Director = "William Shakespeare", CategoriaID = 1 }
+            new Obra { ObraID = 1, Titulo = "La vida es sueño", CategoriaID = 0 },
+            new Obra { ObraID = 2, Titulo = "Hamlet", CategoriaID = 1 }
         );
 
         modelBuilder.Entity<Sala>().HasData(
@@ -93,9 +88,9 @@ public class TeatroAPIContext : DbContext
         );
 
         modelBuilder.Entity<Reserva>().HasData(
-            new Reserva { ReservaID = 1, FuncionID = 1, Asiento = 1, UserID = 1, FechaReserva = new DateTime(2024, 2, 20) },
-            new Reserva { ReservaID = 2, FuncionID = 2, Asiento = 20, UserID = 2, FechaReserva = new DateTime(2024, 2, 21) },
-            new Reserva { ReservaID = 3, FuncionID = 3, Asiento = 3, UserID = 1, FechaReserva = new DateTime(2024, 2, 22) }
+            new Reserva { ReservaID = 1, FuncionID = 1, Asiento = 1, UserID = 1 },
+            new Reserva { ReservaID = 2, FuncionID = 2, Asiento = 20, UserID = 2 },
+            new Reserva { ReservaID = 3, FuncionID = 3, Asiento = 3, UserID = 1 }
         );
     }
 
