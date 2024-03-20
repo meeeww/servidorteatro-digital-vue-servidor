@@ -64,7 +64,8 @@ namespace TeatroAPI.Data
                     Descripcion = o.Descripcion,
                     Imagen = o.Imagen,
                     CategoriaID = o.CategoriaID,
-                    Reservas = reservasList
+                    Reservas = reservasList,
+                    Funciones = funcionesList
                 }).FirstOrDefault();
 
             return obra;

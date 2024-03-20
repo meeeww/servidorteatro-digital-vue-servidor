@@ -367,6 +367,428 @@ namespace TeatroAPI.Data.Migrations
                     b.HasIndex("UserID");
 
                     b.ToTable("Reservas");
+
+                    b.HasData(
+                        new
+                        {
+                            ReservaID = 1,
+                            Asiento = 2,
+                            FuncionID = 5,
+                            UserID = 34
+                        },
+                        new
+                        {
+                            ReservaID = 2,
+                            Asiento = 45,
+                            FuncionID = 1,
+                            UserID = 87
+                        },
+                        new
+                        {
+                            ReservaID = 3,
+                            Asiento = 32,
+                            FuncionID = 15,
+                            UserID = 56
+                        },
+                        new
+                        {
+                            ReservaID = 4,
+                            Asiento = 18,
+                            FuncionID = 8,
+                            UserID = 22
+                        },
+                        new
+                        {
+                            ReservaID = 5,
+                            Asiento = 50,
+                            FuncionID = 24,
+                            UserID = 3
+                        },
+                        new
+                        {
+                            ReservaID = 6,
+                            Asiento = 5,
+                            FuncionID = 13,
+                            UserID = 77
+                        },
+                        new
+                        {
+                            ReservaID = 7,
+                            Asiento = 27,
+                            FuncionID = 7,
+                            UserID = 15
+                        },
+                        new
+                        {
+                            ReservaID = 8,
+                            Asiento = 11,
+                            FuncionID = 19,
+                            UserID = 89
+                        },
+                        new
+                        {
+                            ReservaID = 9,
+                            Asiento = 40,
+                            FuncionID = 2,
+                            UserID = 47
+                        },
+                        new
+                        {
+                            ReservaID = 10,
+                            Asiento = 29,
+                            FuncionID = 22,
+                            UserID = 9
+                        },
+                        new
+                        {
+                            ReservaID = 11,
+                            Asiento = 15,
+                            FuncionID = 10,
+                            UserID = 67
+                        },
+                        new
+                        {
+                            ReservaID = 12,
+                            Asiento = 36,
+                            FuncionID = 4,
+                            UserID = 98
+                        },
+                        new
+                        {
+                            ReservaID = 13,
+                            Asiento = 22,
+                            FuncionID = 11,
+                            UserID = 52
+                        },
+                        new
+                        {
+                            ReservaID = 14,
+                            Asiento = 48,
+                            FuncionID = 6,
+                            UserID = 33
+                        },
+                        new
+                        {
+                            ReservaID = 15,
+                            Asiento = 14,
+                            FuncionID = 16,
+                            UserID = 41
+                        },
+                        new
+                        {
+                            ReservaID = 16,
+                            Asiento = 31,
+                            FuncionID = 14,
+                            UserID = 29
+                        },
+                        new
+                        {
+                            ReservaID = 17,
+                            Asiento = 9,
+                            FuncionID = 21,
+                            UserID = 72
+                        },
+                        new
+                        {
+                            ReservaID = 18,
+                            Asiento = 23,
+                            FuncionID = 9,
+                            UserID = 18
+                        },
+                        new
+                        {
+                            ReservaID = 19,
+                            Asiento = 47,
+                            FuncionID = 3,
+                            UserID = 64
+                        },
+                        new
+                        {
+                            ReservaID = 20,
+                            Asiento = 28,
+                            FuncionID = 17,
+                            UserID = 55
+                        },
+                        new
+                        {
+                            ReservaID = 21,
+                            Asiento = 8,
+                            FuncionID = 23,
+                            UserID = 46
+                        },
+                        new
+                        {
+                            ReservaID = 22,
+                            Asiento = 33,
+                            FuncionID = 18,
+                            UserID = 19
+                        },
+                        new
+                        {
+                            ReservaID = 23,
+                            Asiento = 12,
+                            FuncionID = 20,
+                            UserID = 85
+                        },
+                        new
+                        {
+                            ReservaID = 24,
+                            Asiento = 38,
+                            FuncionID = 12,
+                            UserID = 74
+                        },
+                        new
+                        {
+                            ReservaID = 25,
+                            Asiento = 21,
+                            FuncionID = 5,
+                            UserID = 63
+                        },
+                        new
+                        {
+                            ReservaID = 26,
+                            Asiento = 6,
+                            FuncionID = 8,
+                            UserID = 27
+                        },
+                        new
+                        {
+                            ReservaID = 27,
+                            Asiento = 49,
+                            FuncionID = 16,
+                            UserID = 39
+                        },
+                        new
+                        {
+                            ReservaID = 28,
+                            Asiento = 34,
+                            FuncionID = 24,
+                            UserID = 10
+                        },
+                        new
+                        {
+                            ReservaID = 29,
+                            Asiento = 7,
+                            FuncionID = 13,
+                            UserID = 91
+                        },
+                        new
+                        {
+                            ReservaID = 30,
+                            Asiento = 26,
+                            FuncionID = 11,
+                            UserID = 58
+                        },
+                        new
+                        {
+                            ReservaID = 31,
+                            Asiento = 19,
+                            FuncionID = 9,
+                            UserID = 17
+                        },
+                        new
+                        {
+                            ReservaID = 32,
+                            Asiento = 44,
+                            FuncionID = 20,
+                            UserID = 80
+                        },
+                        new
+                        {
+                            ReservaID = 33,
+                            Asiento = 3,
+                            FuncionID = 2,
+                            UserID = 42
+                        },
+                        new
+                        {
+                            ReservaID = 34,
+                            Asiento = 37,
+                            FuncionID = 17,
+                            UserID = 24
+                        },
+                        new
+                        {
+                            ReservaID = 35,
+                            Asiento = 16,
+                            FuncionID = 6,
+                            UserID = 79
+                        },
+                        new
+                        {
+                            ReservaID = 36,
+                            Asiento = 30,
+                            FuncionID = 21,
+                            UserID = 95
+                        },
+                        new
+                        {
+                            ReservaID = 37,
+                            Asiento = 43,
+                            FuncionID = 15,
+                            UserID = 68
+                        },
+                        new
+                        {
+                            ReservaID = 38,
+                            Asiento = 24,
+                            FuncionID = 10,
+                            UserID = 60
+                        },
+                        new
+                        {
+                            ReservaID = 39,
+                            Asiento = 10,
+                            FuncionID = 7,
+                            UserID = 36
+                        },
+                        new
+                        {
+                            ReservaID = 40,
+                            Asiento = 35,
+                            FuncionID = 14,
+                            UserID = 83
+                        },
+                        new
+                        {
+                            ReservaID = 41,
+                            Asiento = 46,
+                            FuncionID = 3,
+                            UserID = 50
+                        },
+                        new
+                        {
+                            ReservaID = 42,
+                            Asiento = 1,
+                            FuncionID = 19,
+                            UserID = 13
+                        },
+                        new
+                        {
+                            ReservaID = 43,
+                            Asiento = 4,
+                            FuncionID = 22,
+                            UserID = 96
+                        },
+                        new
+                        {
+                            ReservaID = 44,
+                            Asiento = 41,
+                            FuncionID = 12,
+                            UserID = 70
+                        },
+                        new
+                        {
+                            ReservaID = 45,
+                            Asiento = 25,
+                            FuncionID = 18,
+                            UserID = 31
+                        },
+                        new
+                        {
+                            ReservaID = 46,
+                            Asiento = 13,
+                            FuncionID = 23,
+                            UserID = 88
+                        },
+                        new
+                        {
+                            ReservaID = 47,
+                            Asiento = 39,
+                            FuncionID = 1,
+                            UserID = 23
+                        },
+                        new
+                        {
+                            ReservaID = 48,
+                            Asiento = 2,
+                            FuncionID = 4,
+                            UserID = 78
+                        },
+                        new
+                        {
+                            ReservaID = 49,
+                            Asiento = 17,
+                            FuncionID = 8,
+                            UserID = 65
+                        },
+                        new
+                        {
+                            ReservaID = 50,
+                            Asiento = 42,
+                            FuncionID = 5,
+                            UserID = 90
+                        },
+                        new
+                        {
+                            ReservaID = 51,
+                            Asiento = 20,
+                            FuncionID = 7,
+                            UserID = 53
+                        },
+                        new
+                        {
+                            ReservaID = 52,
+                            Asiento = 31,
+                            FuncionID = 10,
+                            UserID = 44
+                        },
+                        new
+                        {
+                            ReservaID = 53,
+                            Asiento = 14,
+                            FuncionID = 13,
+                            UserID = 26
+                        },
+                        new
+                        {
+                            ReservaID = 54,
+                            Asiento = 48,
+                            FuncionID = 16,
+                            UserID = 8
+                        },
+                        new
+                        {
+                            ReservaID = 55,
+                            Asiento = 37,
+                            FuncionID = 19,
+                            UserID = 11
+                        },
+                        new
+                        {
+                            ReservaID = 56,
+                            Asiento = 23,
+                            FuncionID = 21,
+                            UserID = 32
+                        },
+                        new
+                        {
+                            ReservaID = 57,
+                            Asiento = 12,
+                            FuncionID = 24,
+                            UserID = 94
+                        },
+                        new
+                        {
+                            ReservaID = 58,
+                            Asiento = 29,
+                            FuncionID = 2,
+                            UserID = 49
+                        },
+                        new
+                        {
+                            ReservaID = 59,
+                            Asiento = 7,
+                            FuncionID = 14,
+                            UserID = 66
+                        },
+                        new
+                        {
+                            ReservaID = 60,
+                            Asiento = 50,
+                            FuncionID = 17,
+                            UserID = 100
+                        });
                 });
 
             modelBuilder.Entity("TeatroAPI.Model.Sala", b =>

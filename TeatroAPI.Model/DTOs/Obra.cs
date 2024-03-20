@@ -26,6 +26,7 @@
         public int CategoriaID { get; set; }
         public string? Imagen { get; set; }
         public List<ReservaSimpleDto> Reservas { get; set; }
+        public List<FuncionSimpleDto> Funciones { get; set; }
     }
 
     public class ObraInsertDto
