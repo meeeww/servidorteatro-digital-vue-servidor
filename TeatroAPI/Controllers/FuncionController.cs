@@ -52,6 +52,25 @@ namespace TeatroAPI.Controllers
             }
         }
 
+        [HttpGet("obra/{idObra}")]
+        [AllowAnonymous]
+        public IActionResult GetFuncionByObraId(int idObra)
+        {
+            try
+            {
+                var funcion = _funcionService.GetFuncionByObraId(idObra);
+                if (funcion == null)
+                {
+                    return NotFound();
+                }
+                return Ok(funcion);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Ocurrió un error al obtener la funcion.", error = ex.ToString() });
+            }
+        }
+
         [HttpPost]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertFuncion([FromBody] FuncionInsertDto funcionDto)
