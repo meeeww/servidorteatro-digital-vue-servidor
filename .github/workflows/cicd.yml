@@ -35,10 +35,10 @@ jobs:
       - name: Deploy to EKS
         run: |
           aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 905418170343.dkr.ecr.us-east-1.amazonaws.com
-          docker build -t teatro:${{ steps.commit.outputs.short }} .
-          docker tag teatro:${{ steps.commit.outputs.short }} 905418170343.dkr.ecr.us-east-1.amazonaws.com/teatro:${{ steps.commit.outputs.short }}
-          docker push 905418170343.dkr.ecr.us-east-1.amazonaws.com/teatro:${{ steps.commit.outputs.short }}
-          sed -i "s|905418170343.dkr.ecr.us-east-1.amazonaws.com/teatro|905418170343.dkr.ecr.us-east-1.amazonaws.com/teatro:${{ steps.commit.outputs.short }}|" kubernetes/api-deployment.yaml
+          docker build -t teatroapi:${{ steps.commit.outputs.short }} .
+          docker tag teatroapi:${{ steps.commit.outputs.short }} 905418170343.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}
+          docker push 905418170343.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}
+          sed -i "s|905418170343.dkr.ecr.us-east-1.amazonaws.com/teatroapi|905418170343.dkr.ecr.us-east-1.amazonaws.com/teatroapi:${{ steps.commit.outputs.short }}|" kubernetes/api-deployment.yaml
           kubectl apply -f kubernetes/api-deployment.yaml
           kubectl apply -f kubernetes/api-svc.yaml
 
