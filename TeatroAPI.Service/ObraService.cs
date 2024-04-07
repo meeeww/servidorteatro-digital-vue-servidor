@@ -37,7 +37,7 @@ namespace TeatroAPI.Services
 
         public void UpdateObra(Obra obra)
         {
-            _obraRepository.InsertObra(obra);
+            _obraRepository.UpdateObra(obra);
         }
 
         public void DeleteObra(int id)
