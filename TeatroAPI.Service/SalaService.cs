@@ -37,7 +37,7 @@ namespace TeatroAPI.Services
 
         public void UpdateSala(Sala sala)
         {
-            _salaRepository.InsertSala(sala);
+            _salaRepository.UpdateSala(sala);
         }
 
         public void DeleteSala(int id)
