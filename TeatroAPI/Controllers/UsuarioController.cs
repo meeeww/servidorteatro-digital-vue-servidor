@@ -167,6 +167,7 @@ namespace TeatroAPI.Controllers
 
                 var usuario = new Usuario
                 {
+                    UserID = usuarioExistente.UserID,
                     Nombre = usuarioDto.Nombre,
                     Apellido = usuarioDto.Apellido,
                     Email = usuarioDto.Email,
@@ -177,7 +178,7 @@ namespace TeatroAPI.Controllers
 
                 _usuarioService.UpdateUsuario(usuario);
 
-                return NoContent();
+                return Ok(usuario);
             }
             catch (Exception ex)
             {
@@ -193,7 +194,7 @@ namespace TeatroAPI.Controllers
             {
                 _usuarioService.DeleteUsuario(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
