@@ -109,6 +109,7 @@ namespace TeatroAPI.Controllers
 
                 var obra = new Obra
                 {
+                    ObraID = obraExistente.ObraID,
                     Titulo = obraDto.Titulo,
                     Descripcion = obraDto.Descripcion,
                     CategoriaID = obraDto.CategoriaID,
