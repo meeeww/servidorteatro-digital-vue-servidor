@@ -37,7 +37,7 @@ namespace TeatroAPI.Services
 
         public void UpdateFuncion(Funcion funcion)
         {
-            _funcionRepository.InsertFuncion(funcion);
+            _funcionRepository.UpdateFuncion(funcion);
         }
 
         public void DeleteFuncion(int id)

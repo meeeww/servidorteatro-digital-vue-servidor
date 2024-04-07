@@ -122,7 +122,7 @@ namespace TeatroAPI.Controllers
 
                 _funcionService.UpdateFuncion(funcion);
 
-                return NoContent();
+                return Ok(funcion);
             }
             catch (Exception ex)
             {
