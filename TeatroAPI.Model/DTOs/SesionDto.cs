@@ -27,6 +27,12 @@
         public DateTime FechaInicio { get; set; }
     }
 
+    public class SesionIniciarDto
+    {
+        public string? Email { get; set; }
+        public string? Contra { get; set; }
+    }
+
     public class SesionUpdateDto
     {
         public int SessionID { get; set; }
