@@ -173,7 +173,7 @@ namespace TeatroAPI.Controllers
             {
                 _reservaService.DeleteReserva(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
