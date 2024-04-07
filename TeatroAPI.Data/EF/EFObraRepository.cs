@@ -23,28 +23,49 @@ namespace TeatroAPI.Data
                 ObraID = o.ObraID,
                 Titulo = o.Titulo,
                 Descripcion = o.Descripcion,
-                FechaInicio = o.FechaInicio,
-                FechaFin = o.FechaFin,
-                Director = o.Director,
+                Imagen = o.Imagen,
                 CategoriaID = o.CategoriaID
             }).ToList();
 
             return obrasDto;
         }
 
-        public ObraSimpleDto GetObraById(int id)
+        public ObraReservaDto GetObraById(int id)
         {
+            var reservasList = _context.Reservas
+                .Where(reserva => reserva.Funcion!.ObraID == id)
+                .Select(r => new ReservaSimpleDto
+                {
+                    ReservaID = r.ReservaID,
+                    FuncionID = r.FuncionID,
+                    UserID = r.UserID,
+                    Asiento = r.Asiento
+                })
+                .ToList();
+
+            var funcionesList = _context.Funciones
+                .Where(funcion => funcion.ObraID == id)
+                .Select(f => new FuncionSimpleDto
+                {
+                    FuncionID = f.FuncionID,
+                    ObraID = f.ObraID,
+                    SalaID = f.SalaID,
+                    FechaHora = f.FechaHora,
+                    Precio = f.Precio,
+                })
+                .ToList();
+
             var obra = _context.Obras
                 .Where(obra => obra.ObraID == id)
-                .Select(o => new ObraSimpleDto
+                .Select(o => new ObraReservaDto
                 {
                     ObraID = o.ObraID,
                     Titulo = o.Titulo,
                     Descripcion = o.Descripcion,
-                    FechaInicio = o.FechaInicio,
-                    FechaFin = o.FechaFin,
-                    Director = o.Director,
-                    CategoriaID = o.CategoriaID
+                    Imagen = o.Imagen,
+                    CategoriaID = o.CategoriaID,
+                    Reservas = reservasList,
+                    Funciones = funcionesList
                 }).FirstOrDefault();
 
             return obra;
@@ -61,9 +82,8 @@ namespace TeatroAPI.Data
                 ObraID = o.ObraID,
                 Titulo = o.Titulo,
                 Descripcion = o.Descripcion,
-                FechaInicio = o.FechaInicio,
-                FechaFin = o.FechaFin,
-                Director = o.Director,
+                Imagen = o.Imagen,
+                
                 CategoriaID = o.CategoriaID
             }).ToList();
 
@@ -83,9 +103,7 @@ namespace TeatroAPI.Data
             {
                 existingObra.Titulo = obra.Titulo;
                 existingObra.Descripcion = obra.Descripcion;
-                existingObra.FechaInicio = obra.FechaInicio;
-                existingObra.FechaFin = obra.FechaFin;
-                existingObra.Director = obra.Director;
+                existingObra.Imagen = obra.Imagen;
                 existingObra.CategoriaID = obra.CategoriaID;
 
                 _context.SaveChanges();

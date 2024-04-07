@@ -46,6 +46,22 @@ namespace TeatroAPI.Data
             return funcion;
         }
 
+        public List<FuncionSimpleDto> GetFuncionByObraId(int id)
+        {
+            var funcion = _context.Funciones
+            .Where(funcion => funcion.ObraID == id)
+            .Select(f => new FuncionSimpleDto
+            {
+                FuncionID = f.FuncionID,
+                ObraID = f.ObraID,
+                SalaID = f.SalaID,
+                FechaHora = f.FechaHora,
+                Precio = f.Precio,
+            }).ToList();
+
+            return funcion;
+        }
+
         public void InsertFuncion(Funcion funcion)
         {
             _context.Funciones.Add(funcion);

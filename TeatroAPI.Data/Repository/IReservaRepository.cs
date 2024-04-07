@@ -7,6 +7,7 @@ namespace TeatroAPI.Data
     {
         List<ReservaSimpleDto> GetReservas();
         ReservaSimpleDto GetReservaById(int id);
+        ReservaSimpleDto GetReservaByFuncionAsiento(int funcion, int asiento);
         List<ReservaSimpleDto> GetReservasByFuncion(int funcion);
         List<ReservaSimpleDto> GetReservasByCliente(int cliente);
         void InsertReserva(Reserva reserva);

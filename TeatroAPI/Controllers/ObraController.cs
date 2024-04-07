@@ -32,13 +32,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idObra}")]
         [AllowAnonymous]
-        public IActionResult GetObraById(int id)
+        public IActionResult GetObraById(int idObra)
         {
             try
             {
-                var obra = _obraService.GetObraById(id);
+                var obra = _obraService.GetObraById(idObra);
                 if (obra == null)
                 {
                     return NotFound();
@@ -52,7 +52,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("categoria={categoriaId}")]
+        [HttpGet("categoria/{categoriaId}")]
         [AllowAnonymous]
         public IActionResult GetObraCategoriaById(int categoriaId)
         {
@@ -73,18 +73,14 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (obraDto == null)
-                    return BadRequest("La obra no puede ser nula.");
-
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var obra = new Obra
                 {
 
                     Titulo = obraDto.Titulo,
-                    Descripcion = obraDto.Descripcion,
-                    FechaInicio = obraDto.FechaInicio,
-                    FechaFin = obraDto.FechaFin,
-                    Director = obraDto.Director,
+                    Descripcion = obraDto.Descripcion
                 };
 
                 _obraService.InsertObra(obra);
@@ -103,9 +99,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (obraDto == null)
-                    return BadRequest("La obra no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
@@ -116,16 +109,16 @@ namespace TeatroAPI.Controllers
 
                 var obra = new Obra
                 {
+                    ObraID = obraExistente.ObraID,
                     Titulo = obraDto.Titulo,
                     Descripcion = obraDto.Descripcion,
-                    FechaInicio = obraDto.FechaInicio,
-                    FechaFin = obraDto.FechaFin,
-                    Director = obraDto.Director,
+                    CategoriaID = obraDto.CategoriaID,
+                    Imagen = obraDto.Imagen,
                 };
 
                 _obraService.UpdateObra(obra);
 
-                return NoContent();
+                return Ok(obra);
             }
             catch (Exception ex)
             {

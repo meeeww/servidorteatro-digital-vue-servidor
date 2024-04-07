@@ -48,20 +48,40 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("id/{id}")]
+        [HttpGet("usuario/{token}")]
+        [AllowAnonymous]
+        public IActionResult GetUsuarioPorToken(string token)
+        {
+            try
+            {
+                var usuario = _sesionService.GetUsuarioPorToken(token);
+                if (usuario == null)
+                {
+                    return NotFound();
+                }
+                return Ok(usuario);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Ocurrió un error al obtener la sesion.", error = ex.ToString() });
+            }
+        }
+
+        [HttpGet("id/{idSesion}")]
         [Authorize]
-        public IActionResult GetSesionesPorId(int id)
+        public IActionResult GetSesionesPorId(int idSesion)
         {
             var userIdClaim = User.FindFirst(ClaimTypes.SerialNumber)?.Value;
 
-            if (userIdClaim == null || id.ToString() != userIdClaim)
+            if (userIdClaim == null || idSesion.ToString() != userIdClaim)
             {
-                return Forbid(); // El usuario no tiene permitido acceder a este recurso
+                return Forbid();
             }
 
             try
             {
-                var sesion = _sesionService.GetSesionesPorId(id);
+                var sesion = _sesionService.GetSesionesPorId(idSesion);
                 if (sesion == null)
                 {
                     return NotFound();
@@ -77,12 +97,12 @@ namespace TeatroAPI.Controllers
 
         [HttpPost("iniciar")]
         [AllowAnonymous]
-        public IActionResult IniciarSesion([FromBody] SesionInsertDto credenciales)
+        public IActionResult IniciarSesion([FromBody] SesionIniciarDto credenciales)
         {
             try
             {
-                if (credenciales == null)
-                    return BadRequest("El usuario no puede ser nulo.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 //verify user con throw en service
 
@@ -123,9 +143,7 @@ namespace TeatroAPI.Controllers
                     UserID = usuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
-                    FechaFin = fechaExpiracion,
-                    IP = credenciales.IP,
-                    Dispositivo = credenciales.Dispositivo,
+                    FechaFin = fechaExpiracion
                 };
 
                 _sesionService.CrearSesion(sesion);
@@ -144,8 +162,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (credenciales == null)
-                    return BadRequest("El usuario no puede ser nulo.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var usuarioExistente = _usuarioService.GetUsuarioContraByEmail(credenciales.Email);
 
@@ -194,9 +212,7 @@ namespace TeatroAPI.Controllers
                     UserID = nuevoUsuario.UserID,
                     Token = tokenString,
                     FechaInicio = DateTime.UtcNow,
-                    FechaFin = fechaExpiracion,
-                    IP = "desactivado por ahora",
-                    Dispositivo = "desactivado por ahora",
+                    FechaFin = fechaExpiracion
                 };
 
                 _sesionService.CrearSesion(sesion);
@@ -217,7 +233,7 @@ namespace TeatroAPI.Controllers
 
             if (userIdClaim == null || sesionDto.UserID.ToString() != userIdClaim)
             {
-                return Forbid(); // El usuario no tiene permitido acceder a este recurso
+                return Forbid();
             }
 
             try
