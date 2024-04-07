@@ -103,7 +103,6 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertReserva([FromBody] ReservaInsertDto reservaDto)
         {
             try
