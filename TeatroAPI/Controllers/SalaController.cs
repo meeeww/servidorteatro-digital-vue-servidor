@@ -32,13 +32,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idSala}")]
         [AllowAnonymous]
-        public IActionResult GetSalaById(int id)
+        public IActionResult GetSalaById(int idSala)
         {
             try
             {
-                var sala = _salaService.GetSalaById(id);
+                var sala = _salaService.GetSalaById(idSala);
                 if (sala == null)
                 {
                     return NotFound();
@@ -52,7 +52,7 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("name={name}")]
+        [HttpGet("name/{name}")]
         [AllowAnonymous]
         public IActionResult GetSalaByName(string name)
         {
@@ -78,9 +78,8 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (salaDto == null)
-                    return BadRequest("La sala no puede ser nula.");
-
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var sala = new Sala
                 {
@@ -104,9 +103,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (salaDto == null)
-                    return BadRequest("La sala no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
@@ -117,13 +113,14 @@ namespace TeatroAPI.Controllers
 
                 var sala = new Sala
                 {
+                    SalaID = salaExistente.SalaID,
                     Nombre = salaDto.Nombre,
                     Capacidad = salaDto.Capacidad,
                 };
 
                 _salaService.UpdateSala(sala);
 
-                return NoContent();
+                return Ok(sala);
             }
             catch (Exception ex)
             {
@@ -139,7 +136,7 @@ namespace TeatroAPI.Controllers
             {
                 _salaService.DeleteSala(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {

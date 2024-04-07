@@ -23,6 +23,11 @@ namespace TeatroAPI.Services
             return _funcionRepository.GetFuncionById(id);
         }
 
+        public List<FuncionSimpleDto> GetFuncionByObraId(int id)
+        {
+            return _funcionRepository.GetFuncionByObraId(id);
+        }
+
         public Funcion InsertFuncion(Funcion funcion)
         {
             _funcionRepository.InsertFuncion(funcion);

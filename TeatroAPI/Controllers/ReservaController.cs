@@ -33,16 +33,16 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idReserva}")]
         [Authorize]
-        public IActionResult GetReservaById(int id)
+        public IActionResult GetReservaById(int idReserva)
         {
             try
             {
                 var userId = HttpContext.User.FindFirst(ClaimTypes.SerialNumber)?.Value;
                 var userRol = HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
 
-                var reserva = _reservaService.GetReservaById(id);
+                var reserva = _reservaService.GetReservaById(idReserva);
                 if (reserva == null)
                 {
                     return NotFound();
@@ -62,13 +62,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("funcion={funcion}")]
+        [HttpGet("funcion/{idFuncion}")]
         [Authorize(Policy = "EsAdmin")]
-        public IActionResult GetReservasByFuncion(int funcion)
+        public IActionResult GetReservasByFuncion(int idFuncion)
         {
             try
             {
-                var reserva = _reservaService.GetReservasByFuncion(funcion);
+                var reserva = _reservaService.GetReservasByFuncion(idFuncion);
                 if (reserva == null)
                 {
                     return NotFound();
@@ -82,13 +82,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("cliente={cliente}")]
+        [HttpGet("cliente/{idCliente}")]
         [Authorize(Policy = "EsAdmin")]
-        public IActionResult GetReservasByCliente(int cliente)
+        public IActionResult GetReservasByCliente(int idCliente)
         {
             try
             {
-                var reserva = _reservaService.GetReservasByCliente(cliente);
+                var reserva = _reservaService.GetReservasByCliente(idCliente);
                 if (reserva == null)
                 {
                     return NotFound();
@@ -103,20 +103,23 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertReserva([FromBody] ReservaInsertDto reservaDto)
         {
             try
             {
-                if (reservaDto == null)
-                    return BadRequest("La reserva no puede ser nula.");
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
+                var reservaExistente = _reservaService.GetReservaByFuncionAsiento(reservaDto.FuncionID, reservaDto.Asiento);
+
+                if (reservaExistente != null)
+                    return Conflict("La reserva ya existe.");
 
                 var reserva = new Reserva
                 {
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
-                    FechaReserva = reservaDto.FechaReserva,
+                    Asiento = reservaDto.Asiento
                 };
 
                 _reservaService.InsertReserva(reserva);
@@ -135,9 +138,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (reservaDto == null)
-                    return BadRequest("La reserva no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 
@@ -148,14 +148,15 @@ namespace TeatroAPI.Controllers
 
                 var reserva = new Reserva
                 {
+                    ReservaID = reservaExistente.ReservaID,
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
-                    FechaReserva = reservaDto.FechaReserva,
+                    Asiento = reservaDto.Asiento
                 };
 
                 _reservaService.UpdateReserva(reserva);
 
-                return NoContent();
+                return Ok(reserva);
             }
             catch (Exception ex)
             {
@@ -171,7 +172,7 @@ namespace TeatroAPI.Controllers
             {
                 _reservaService.DeleteReserva(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {

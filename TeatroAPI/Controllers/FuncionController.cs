@@ -32,13 +32,13 @@ namespace TeatroAPI.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{idFuncion}")]
         [AllowAnonymous]
-        public IActionResult GetFuncionById(int id)
+        public IActionResult GetFuncionById(int idFuncion)
         {
             try
             {
-                var funcion = _funcionService.GetFuncionById(id);
+                var funcion = _funcionService.GetFuncionById(idFuncion);
                 if (funcion == null)
                 {
                     return NotFound();
@@ -52,15 +52,33 @@ namespace TeatroAPI.Controllers
             }
         }
 
+        [HttpGet("obra/{idObra}")]
+        [AllowAnonymous]
+        public IActionResult GetFuncionByObraId(int idObra)
+        {
+            try
+            {
+                var funcion = _funcionService.GetFuncionByObraId(idObra);
+                if (funcion == null)
+                {
+                    return NotFound();
+                }
+                return Ok(funcion);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Ocurrió un error al obtener la funcion.", error = ex.ToString() });
+            }
+        }
+
         [HttpPost]
         [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertFuncion([FromBody] FuncionInsertDto funcionDto)
         {
             try
             {
-                if (funcionDto == null)
-                    return BadRequest("La funcion no puede ser nula.");
-
+                if (!ModelState.IsValid)
+                    return BadRequest(ModelState);
 
                 var funcion = new Funcion
                 {
@@ -86,9 +104,6 @@ namespace TeatroAPI.Controllers
         {
             try
             {
-                if (funcionDto == null)
-                    return BadRequest("La funcion no puede ser nula.");
-
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
 

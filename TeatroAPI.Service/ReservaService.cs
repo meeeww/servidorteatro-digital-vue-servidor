@@ -23,6 +23,11 @@ namespace TeatroAPI.Services
             return _reservaRepository.GetReservaById(id);
         }
 
+        public ReservaSimpleDto GetReservaByFuncionAsiento(int funcion, int asiento)
+        {
+            return _reservaRepository.GetReservaByFuncionAsiento(funcion, asiento);
+        }
+
         public List<ReservaSimpleDto> GetReservasByFuncion(int funcion)
         {
             return _reservaRepository.GetReservasByFuncion(funcion);
@@ -42,7 +47,7 @@ namespace TeatroAPI.Services
 
         public void UpdateReserva(Reserva reserva)
         {
-            _reservaRepository.InsertReserva(reserva);
+            _reservaRepository.UpdateReserva(reserva);
         }
 
         public void DeleteReserva(int id)

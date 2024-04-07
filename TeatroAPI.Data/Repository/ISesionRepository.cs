@@ -6,6 +6,7 @@ namespace TeatroAPI.Data
     public interface ISesionRepository
     {
         SesionDto GetSesionPorToken(string token);
+        UsuarioSimpleDto GetUsuarioPorToken(string token);
         List<SesionDto> GetSesionesPorId(int id);
         void CrearSesion(Sesion sesion);
         void FinalizarSesion(string token);
