@@ -97,7 +97,7 @@ namespace TeatroAPI.Controllers
 
         [HttpPost("iniciar")]
         [AllowAnonymous]
-        public IActionResult IniciarSesion([FromBody] SesionInsertDto credenciales)
+        public IActionResult IniciarSesion([FromBody] SesionIniciarDto credenciales)
         {
             try
             {
