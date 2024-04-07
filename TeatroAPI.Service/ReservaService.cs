@@ -47,7 +47,7 @@ namespace TeatroAPI.Services
 
         public void UpdateReserva(Reserva reserva)
         {
-            _reservaRepository.InsertReserva(reserva);
+            _reservaRepository.UpdateReserva(reserva);
         }
 
         public void DeleteReserva(int id)
