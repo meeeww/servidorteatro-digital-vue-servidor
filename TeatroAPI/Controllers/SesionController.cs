@@ -48,6 +48,26 @@ namespace TeatroAPI.Controllers
             }
         }
 
+        [HttpGet("usuario/{token}")]
+        [AllowAnonymous]
+        public IActionResult GetUsuarioPorToken(string token)
+        {
+            try
+            {
+                var usuario = _sesionService.GetUsuarioPorToken(token);
+                if (usuario == null)
+                {
+                    return NotFound();
+                }
+                return Ok(usuario);
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = "Ocurrió un error al obtener la sesion.", error = ex.ToString() });
+            }
+        }
+
         [HttpGet("id/{idSesion}")]
         [Authorize]
         public IActionResult GetSesionesPorId(int idSesion)
@@ -77,7 +97,7 @@ namespace TeatroAPI.Controllers
 
         [HttpPost("iniciar")]
         [AllowAnonymous]
-        public IActionResult IniciarSesion([FromBody] SesionInsertDto credenciales)
+        public IActionResult IniciarSesion([FromBody] SesionIniciarDto credenciales)
         {
             try
             {

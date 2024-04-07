@@ -109,13 +109,16 @@ namespace TeatroAPI.Controllers
 
                 var obra = new Obra
                 {
+                    ObraID = obraExistente.ObraID,
                     Titulo = obraDto.Titulo,
                     Descripcion = obraDto.Descripcion,
+                    CategoriaID = obraDto.CategoriaID,
+                    Imagen = obraDto.Imagen,
                 };
 
                 _obraService.UpdateObra(obra);
 
-                return NoContent();
+                return Ok(obra);
             }
             catch (Exception ex)
             {

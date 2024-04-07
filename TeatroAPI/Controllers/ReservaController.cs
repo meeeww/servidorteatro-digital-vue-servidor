@@ -103,7 +103,6 @@ namespace TeatroAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Policy = "EsAdmin")]
         public IActionResult InsertReserva([FromBody] ReservaInsertDto reservaDto)
         {
             try
@@ -149,6 +148,7 @@ namespace TeatroAPI.Controllers
 
                 var reserva = new Reserva
                 {
+                    ReservaID = reservaExistente.ReservaID,
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
                     Asiento = reservaDto.Asiento
@@ -156,7 +156,7 @@ namespace TeatroAPI.Controllers
 
                 _reservaService.UpdateReserva(reserva);
 
-                return NoContent();
+                return Ok(reserva);
             }
             catch (Exception ex)
             {
@@ -172,7 +172,7 @@ namespace TeatroAPI.Controllers
             {
                 _reservaService.DeleteReserva(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {

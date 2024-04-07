@@ -1,0 +1,2 @@
+DOCKER_CONTAINER=true
+STRING_CONEXION=Server=sqlserver-service;Database=teatroapi;User Id=sa;Password=ContraFuerteParaOmarhOO123!!;Encrypt=True;TrustServerCertificate=True;Max Pool Size=100;

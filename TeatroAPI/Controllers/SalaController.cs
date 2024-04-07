@@ -113,13 +113,14 @@ namespace TeatroAPI.Controllers
 
                 var sala = new Sala
                 {
+                    SalaID = salaExistente.SalaID,
                     Nombre = salaDto.Nombre,
                     Capacidad = salaDto.Capacidad,
                 };
 
                 _salaService.UpdateSala(sala);
 
-                return NoContent();
+                return Ok(sala);
             }
             catch (Exception ex)
             {
@@ -135,7 +136,7 @@ namespace TeatroAPI.Controllers
             {
                 _salaService.DeleteSala(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
