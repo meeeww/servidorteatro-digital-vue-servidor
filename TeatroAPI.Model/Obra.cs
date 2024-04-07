@@ -12,7 +12,6 @@ namespace TeatroAPI.Model
         public string? Descripcion { get; set; }
         [Required]
         public int CategoriaID { get; set; }
-        [Required]
         public string? Imagen {  get; set; }
         public virtual ICollection<Funcion> Funciones { get; set; } = new List<Funcion>();
     }
