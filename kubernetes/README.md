@@ -64,6 +64,10 @@ enabled=1
 gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sudo dnf config-manager --add-repo https://packages.microsoft.com/yumrepos/microsoft-rhel7.3-prod
+sudo dnf install dotnet-sdk-6.0
+
 dotnet tool install --global dotnet-ef --version 6.*
 
 # Hacemos las migraciones de la BBDD
