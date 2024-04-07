@@ -149,6 +149,7 @@ namespace TeatroAPI.Controllers
 
                 var reserva = new Reserva
                 {
+                    ReservaID = reservaDto.ReservaID,
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
                     Asiento = reservaDto.Asiento
@@ -156,7 +157,7 @@ namespace TeatroAPI.Controllers
 
                 _reservaService.UpdateReserva(reserva);
 
-                return NoContent();
+                return Ok(reserva);
             }
             catch (Exception ex)
             {
