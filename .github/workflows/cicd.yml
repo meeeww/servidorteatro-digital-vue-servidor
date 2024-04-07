@@ -5,7 +5,7 @@ on:
     branches: ["main"]
 env:
   ECR_REPOSITORY:
-  EKS_CLUSTER_NAME: teatrogaleguista
+  EKS_CLUSTER_NAME: teatro
   AWS_REGION: us-east-1
 
 jobs:
