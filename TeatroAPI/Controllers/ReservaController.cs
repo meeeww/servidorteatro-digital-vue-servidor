@@ -149,7 +149,7 @@ namespace TeatroAPI.Controllers
 
                 var reserva = new Reserva
                 {
-                    ReservaID = reservaDto.ReservaID,
+                    ReservaID = reservaExistente.ReservaID,
                     FuncionID = reservaDto.FuncionID,
                     UserID = reservaDto.UserID,
                     Asiento = reservaDto.Asiento
