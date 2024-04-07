@@ -17,6 +17,10 @@ namespace TeatroAPI.Services
         {
             return _sesionRepository.GetSesionPorToken(token);
         }
+        public UsuarioSimpleDto GetUsuarioPorToken(string token)
+        {
+            return _sesionRepository.GetUsuarioPorToken(token);
+        }
 
         public List<SesionDto> GetSesionesPorId(int id)
         {
